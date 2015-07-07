@@ -161,7 +161,7 @@ box-shadow:         1px 1px 14px 0px rgba(50, 50, 50, 0.72);
 }
 
   
-header .site-container-1{
+header .site-container-1{height:103px;
 	    -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;

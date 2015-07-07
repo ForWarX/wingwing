@@ -213,7 +213,7 @@ $(document).ready(function(){
 
 <nav id="site-navigation-1" class="main-navigation-1" role="navigation">
     
-    <div class="site-container-1" style="width: 100%;">
+   
 	
 	<div id="menu-outer">
     <label for="show-menu" class="show-menu"><span id="hamburgermenu"></span></label>
@@ -241,7 +241,7 @@ $(document).ready(function(){
                 
     </div>
     </div>
-    </div>
+
     
 </nav><!-- #site-navigation -->        
 
