@@ -36,7 +36,7 @@
                     <a href="article.php?id={$item.article_id}">
                         <div>{$item.title}</div>
                         <div class="imgholder">
-
+						<img src="{$item.src}">
                         </div>
                         <div>{$item.content}</div>
                         <div>{$item.article_date}</div>
@@ -187,7 +187,7 @@
                         '<div class="grid-inner">' +
                         '<a href="article.php?id=' + result.content[i]['article_id'] + '">' +
                         '<div>' + result.content[i]['title'] + '</div>' +
-                        //'<div><img src="' + result.content[i]['src'] + '"></div>' +
+                        '<div class="imgholder"><img src="' + result.content[i]['src'] + '"></div>' +
                         '<div>' + result.content[i]['content'] + '</div>' +
                         '<div>' + result.content[i]['article_date'] + '</div>' +
                         '<div>' + result.content[i]['article_id'] + '</div>' +

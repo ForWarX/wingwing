@@ -2998,7 +2998,7 @@ color: #c0c0c0;
     #product_main_slide {
         float: right;
     }
-    #index_first_row_wrap {
+    #products_first_row_wrap {
         height:45vw; 
         overflow:hidden;
     }
@@ -3039,6 +3039,9 @@ color: #c0c0c0;
     .yamm .yamm-content .row {
         margin-right: 0px;
         margin-left: 0px;
+    }
+	.yamm .yamm-content .row .col-sm-2 {
+		width: 100%;
     }
     #product_main_triple_ads {
         width: 100%;
