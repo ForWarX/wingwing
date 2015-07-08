@@ -705,6 +705,7 @@ position:relative;
 }
 .grid .imgholder img{
 	max-width:100%;
+	height:200px;
 	background:#ccc;
 	display:block;
 }
@@ -725,7 +726,20 @@ position:relative;
 
 /*end of article_home*/
 
+/*article begins*/
+.article-content {
+width:60%;
+}
+.article-content .box{
 
+}
+.article-content .box .box1{
+text-align:justify;
+width:98%;
+margin:0 auto;
+}
+
+/*end of articles*/
 
 
 
@@ -1323,7 +1337,7 @@ background: url(images/new_main_line.gif) no-repeat right center;} */
 
   
    /*帮助*/
- .footer {width: auto!important;border-top: 5px solid #19C589;clear: both;padding-top: 2.55em;margin-top:10px;}
+ .footer {width: auto!important;border-top: 5px solid #19C589;clear: both;padding-top: 2.55em;/*margin-top:10px;*/}
 .footer .helpTitBg{ margin: 0 auto;width: 90%;}
 .helpTitBg{ overflow:hidden;clear:both}
 .helpTitBg:first-child{padding-left:8%;}

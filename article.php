@@ -293,7 +293,7 @@ function get_article_info_init($num_record_start_from=0,$num_record=10)
 	foreach ($row as $key => $value){
 		
 		$init_article_info[$key]['article_id'] = $value['article_id'];
-		$init_article_info[$key]['title'] = $value['title'.$_SESSION['language']];
+		$init_article_info[$key]['title'] =$value['title'.$_SESSION['language']];
 		$init_article_info[$key]['description'] = $value['description'.$_SESSION['language']];
 		
 		
@@ -302,19 +302,28 @@ function get_article_info_init($num_record_start_from=0,$num_record=10)
 		$condition_start = '<img';
 		$condition_end = '>';
 		$img_pos_start = stripos($init_article_info[$key]['content'], $condition_start);
-		$img_pos_end   = stripos($init_article_info[$key]['content'], $condition_end, $img_pos_start);
-		$img_tag = substr($init_article_info[$key]['content'], $img_pos_start, $img_pos_end - $img_pos_start + 1);
-		
-		$condition_start = 'src="';
-		$condition_end = '"';
-		$src_pos_start = stripos($img_tag, $condition_start);
-		$src_pos_end   = stripos($img_tag, $condition_end, $img_pos_start);
-		$src = substr($img_tag, $src_pos_start + 5, $src_pos_end - $src_pos_start - 5);
-		
-		$init_article_info[$key]['src'] = $src;
+		if ($img_pos_start !== false){
+			$img_pos_end   = stripos($init_article_info[$key]['content'], $condition_end, $img_pos_start);
+			$img_tag = substr($init_article_info[$key]['content'], $img_pos_start, $img_pos_end - $img_pos_start + 1);
+			$condition_start = 'src="';
+			$condition_end = '"';
+			$src_pos_start = stripos($img_tag, $condition_start);
+			$img_tag_temp = str_replace('<img src="','',$img_tag);
+			$src_pos_end   = stripos($img_tag_temp, '"');
+			$src = substr($img_tag, $src_pos_start + 5, $src_pos_end - $src_pos_start - 5 + 10);
+			$init_article_info[$key]['src'] = $src;
+		}
+		else{
+			$init_article_info[$key]['src'] = '';
+		}
 		
 		$init_article_info[$key]['content'] = strip_tags($init_article_info[$key]['content']);
-		$limitation = floor(strlen($init_article_info[$key]['content']) * 0.058);
+		if (strlen($init_article_info[$key]['content']) > 500){
+			$limitation = floor(strlen($init_article_info[$key]['content']) * 0.058);
+		}
+		else{
+			$limitation = 500;
+		}
 		$init_article_info[$key]['content'] = ellipsis($init_article_info[$key]['content'],$limitation);
 		
 		$init_article_info[$key]['article_date'] = $value['article_date'];

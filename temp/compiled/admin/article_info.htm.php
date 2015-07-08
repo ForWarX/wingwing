@@ -98,7 +98,7 @@
 			<td><?php echo $this->_var['lang']['lable_content_cn']; ?></td>
 	</tr>
      <tr>
-		 <td><?php echo $this->_var['umeditor']; ?></td>
+		 <td><?php echo $this->_var['ueditor']; ?></td>
 	 </tr>
     </table>
     <table width="90%" id="detail-table" style="display:none">
@@ -106,7 +106,7 @@
 			<td><?php echo $this->_var['lang']['lable_content_en']; ?></td>
 	</tr>
      <tr>
-		 <td><?php echo $this->_var['umeditor2']; ?></td>
+		 <td><?php echo $this->_var['ueditor2']; ?></td>
 	 </tr>
     </table>
 

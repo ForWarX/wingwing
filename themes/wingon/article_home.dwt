@@ -33,15 +33,17 @@
 
             <div class="grid">
                 <div class="grid-inner">
-                    <a href="article.php?id={$item.article_id}">
-                        <div>{$item.title}</div>
-                        <div class="imgholder">
-						<img src="{$item.src}">
+                        <div><a href="article.php?id={$item.article_id}"><h4><!-- <i class="glyphicon glyphicon-bookmark" style="font-size: 0.65em;color: #19C589;"></i>&nbsp; --><small style="font-size:1.1em;">{$item.title}</small></h4></a></div>
+						<div style="height:5px;"></div>
+                        {if $item.src neq ''}
+					    <div class="imgholder">
+						<a href="article.php?id={$item.article_id}" ><img src="{$item.src}"></a>
                         </div>
-                        <div>{$item.content}</div>
+						{/if}
+						<div style="height:10px;"></div>
+                        <div><font style="font-size:1.2em;color: #565656;"><small>{$item.content}</small></font></div>
                         <div>{$item.article_date}</div>
-                        <div>{$item.article_id}</div>
-                    </a>
+						<a href="article.php?id={$item.article_id}" class="label label-info" style="font-size: 1.1em;float:right;">{$_LANG.view}</a>
                 </div>
             </div>
 
@@ -97,10 +99,10 @@
         function setblocksit(id, offsetXvalue, offsetYvalue, gridwidth, column) {
 
             if (offsetXvalue == '') {
-                offsetXvalue = 8;
+                offsetXvalue = -8;
             }
             if (offsetYvalue == '') {
-                offsetYvalue = 8;
+                offsetYvalue = 7;
             }
             if (gridwidth == '') {
                 gridwidth = 300;
@@ -183,15 +185,19 @@
             var grid = '';
             if (result.error == '') {
                 for (var i = 0; i < result.content.length; i++) {
+				var imgtag = '';
+				if (result.content[i]['src'] != ''){
+					imgtag = '<div class="imgholder"><a href="article.php?id=' + result.content[i]['article_id'] + '" ><img src="' + result.content[i]['src'] + '"></a></div>';
+				}
                     grid = '<div class="grid class" style="">' +
                         '<div class="grid-inner">' +
-                        '<a href="article.php?id=' + result.content[i]['article_id'] + '">' +
-                        '<div>' + result.content[i]['title'] + '</div>' +
-                        '<div class="imgholder"><img src="' + result.content[i]['src'] + '"></div>' +
-                        '<div>' + result.content[i]['content'] + '</div>' +
+						'<div style="height:5px;"></div>' +
+                        '<div><a href="article.php?id=' + result.content[i]['article_id'] + '"><h4><small style="font-size:1.1em;">' + result.content[i]['title'] + '</small></h4></a></div>' +
+                        imgtag +
+						'<div style="height:10px;"></div>' + 
+                        '<div><font style="font-size:1.2em;color: #565656;"><small>' + result.content[i]['content'] + '</small></font></div>' +
                         '<div>' + result.content[i]['article_date'] + '</div>' +
-                        '<div>' + result.content[i]['article_id'] + '</div>' +
-                        '</a>' +
+                        '<a href="article.php?id=' + result.content[i]['article_id'] + '" class="label label-info" style="font-size: 1.1em;float:right;">' + '{$_LANG.view}' + '</a>' +
                         '</div>' +
                         '</div>';
                     html = grid + html;

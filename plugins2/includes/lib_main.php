@@ -312,31 +312,27 @@ function create_html_editor($input_name, $input_value = '', $input_value2 = '')
 {
     global $smarty;
 
-    $umeditor="
-	<link href='../includes/umeditor/themes/default/css/umeditor.css' type='text/css' rel='stylesheet'>
-	<script type='text/plain' id='myEditor' name='editor_cn' style='width:1000px;height:240px;'>$input_value
-</script>
-	<script type='text/javascript' charset='utf-8' src='../includes/umeditor/umeditor.config.js'></script>
-    <script type='text/javascript' charset='utf-8' src='../includes/umeditor/umeditor.min.js'></script>
-    <script type='text/javascript' src='../includes/umeditor/lang/zh-cn/zh-cn.js'></script>
+    $ueditor="
+<!-- 加载编辑器的容器 -->
+	<script id='container' name='editor_cn' type='text/plain'>$input_value</script>
+	<!-- 配置文件 -->
+	<script type='text/javascript' src='../includes/ueditor/ueditor.config.js'></script>
+	<!-- 编辑器源码文件 -->
+	<script type='text/javascript' src='../includes/ueditor/ueditor.all.js'></script>
+	<!-- 实例化编辑器 -->
 	<script type='text/javascript'>
-  		var um = UM.getEditor('myEditor');
-		UM.getEditor('myEditor').focus();
+	    var ue = UE.getEditor('container');
 	</script>
 	";
-    $umeditor2="
-	<script type='text/plain' id='myEditor2' name='editor_en' style='width:1000px;height:240px;'>$input_value2
-</script>
-	<script type='text/javascript' charset='utf-8' src='../includes/umeditor/umeditor.config.js'></script>
-    <script type='text/javascript' charset='utf-8' src='../includes/umeditor/umeditor.min.js'></script>
-    <script type='text/javascript' src='../includes/umeditor/lang/zh-cn/zh-cn.js'></script>
+    $ueditor2="
+<!-- 加载编辑器的容器 -->
+	<script id='container2' name='editor_en' type='text/plain'>$input_value2</script>
 	<script type='text/javascript'>
-  		var um = UM.getEditor('myEditor2');
-		UM.getEditor('myEditor2').focus();
-	</script>
+	    var ue2 = UE.getEditor('container2');
+	</script>	
 	";
-    $smarty->assign('umeditor', $umeditor);
-    $smarty->assign('umeditor2', $umeditor2);
+    $smarty->assign('ueditor', $ueditor);
+    $smarty->assign('ueditor2', $ueditor2);
 }
 
 /**

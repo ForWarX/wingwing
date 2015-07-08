@@ -770,4 +770,5 @@ $_LANG['cancel'] = 'Cancel';
 
 //airticle_home新闻动态页面//
 $_LANG['more'] = 'More';
+$_LANG['view'] = 'View';
 ?>

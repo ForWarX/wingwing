@@ -89,9 +89,10 @@ $(document).ready(function(){
 	function scrollNav(e){
 			var screenW = jQuery('body').innerWidth();
 			var screenH = jQuery('body').height();
+			//if (screenH > 1200){
 			
             var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-                shrinkOn = 100,
+                shrinkOn = 250,
                 header = document.querySelector("header");
 				sitecontainer1 = document.getElementById("site-container-1");
 				blankdiv = document.getElementById("blank-div");
@@ -99,7 +100,7 @@ $(document).ready(function(){
 				if (screenW > 760){
 					classie.add(sitecontainer1,"site-container-1-smaller");
 					classie.add(header,"smaller");
-					classie.add(blankdiv,"blank-div-smaller");
+					//classie.add(blankdiv,"blank-div-smaller");
 					//document.getElementById("site-container-1").style.display = "none";
 					//document.getElementById("site-container-1").style.height = "0px";
 					}
@@ -108,13 +109,14 @@ $(document).ready(function(){
 					if (classie.has(header,"smaller")) {
 						classie.remove(sitecontainer1,"site-container-1-smaller");
 						classie.remove(header,"smaller");
-						classie.remove(blankdiv,"blank-div-smaller");
+						//classie.remove(blankdiv,"blank-div-smaller");
 						//document.getElementById("site-container-1").style.display = "block";
 						//document.getElementById("site-container-1").style.height = "103px";
 					}
                 }
             }
         }
+	//}
 	
     function init() {
 
