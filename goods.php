@@ -1,21 +1,26 @@
 <?php
 
 /**
- * ECSHOP 商品详情
+ * PBCC 商品详情
  * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
+ * * 版权所有 2013-2014 加拿大极地熊集团，并保留所有权利。
  * ============================================================================
- * $Author: liubo $
- * $Id: goods.php 17217 2011-01-19 06:29:08Z liubo $
+ * $Id: goods.php $
 */
 
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
+require(ROOT_PATH . '/includes/lib_comment_img.php');
+
+//// temp_comment_id session /////
+$user_id_for_temp_comment_id = $_SESSION['user_id']. '_';
+if (isset($_SESSION[''.$user_id_for_temp_comment_id.'temp_comment_id']) === false){
+	$_SESSION[''.$user_id_for_temp_comment_id.'temp_comment_id'] = '-'. 1;
+}
+/// 删除temp的comment img ///
+delete_temp_comment_img();
+
 
 if ((DEBUG_MODE & 2) != 2)
 {
@@ -62,7 +67,9 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'price')
         }
 
         $shop_price  = get_final_price($goods_id, $number, true, $attr_id);
-        $res['result'] = price_format($shop_price * $number);
+        /*$res['result'] = price_format($shop_price * $number);*/
+		$res['result'] = $shop_price * $number;
+		$res['result_rmb'] = round(($res['result'] * get_exchange_rate("CNY","CAD")),1);
     }
 
     die($json->encode($res));
@@ -152,6 +159,22 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 
     /* 获得商品的信息 */
     $goods = get_goods_info($goods_id);
+	$goods['goods_name'] = remove_ks($goods['goods_name']);
+	$all_comments_count = $GLOBALS['db']->getOne('SELECT COUNT(*) FROM ' .$GLOBALS['ecs']->table('comment').
+						" WHERE id_value = '$id' AND comment_type = 0 AND parent_id = 0");
+	
+	$goods['all_comments_count'] = 	$all_comments_count;	
+	
+	$all_comments__rank_count = $GLOBALS['db']->getOne('SELECT SUM(comment_rank) FROM ' .$GLOBALS['ecs']->table('comment').
+						" WHERE id_value = '$id' AND comment_type = 0 AND parent_id = 0");
+	
+	$average_rank = ceil($all_comments__rank_count/$all_comments_count);
+	if (empty($average_rank)){$average_rank = 5;}
+	$goods['average_rank'] = $average_rank;
+	
+	$smarty->assign('same_cat_product', get_same_cat($goods_id, $goods['cat_id'], 18));
+	
+	$smarty->assign('currency_format', substr($_CFG['currency_format'],0,strpos($_CFG['currency_format'], '%')));
 
     if ($goods === false)
     {
@@ -167,6 +190,19 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         }
 
         $shop_price   = $goods['shop_price'];
+		/*折合人民币*/
+		$xe = get_exchange_rate("CNY","CAD");
+		$shop_price_rmb = round($shop_price * floatval($xe), 1);
+		$smarty->assign('shop_price_rmb', $shop_price_rmb);
+		
+		/*促销价的P币*/
+		if ($goods['promote_price_org'] != ""){
+			$promote_price_rmb =round(floatval($goods['promote_price_org']) * floatval($xe), 1);
+			$promote_pcoin = $promote_price_rmb * 10;
+			$smarty->assign('promote_price_rmb', $promote_price_rmb);
+			$smarty->assign('promote_pcoin', $promote_pcoin);
+		}
+		
         $linked_goods = get_linked_goods($goods_id);
 
         $goods['goods_style_name'] = add_style($goods['goods_name'], $goods['goods_name_style']);
@@ -186,7 +222,9 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
                 $goods['bonus_money'] = price_format($goods['bonus_money']);
             }
         }
-
+		if(gmtime() < $goods['gmt_end_time']){
+			$smarty->assign('is_promoted', 1);
+		}
         $smarty->assign('goods',              $goods);
         $smarty->assign('goods_id',           $goods['goods_id']);
         $smarty->assign('promote_end_time',   $goods['gmt_end_time']);
@@ -226,18 +264,84 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('page_title',          $position['title']);                    // 页面标题
         $smarty->assign('ur_here',             $position['ur_here']);                  // 当前位置
 
-        $properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
 
-        $smarty->assign('properties',          $properties['pro']);                              // 商品属性
+        $properties = get_goods_properties($goods_id);  // 获得商品的规格和属性
+		
+		
+		$temp_properties = array();
+		$temp_properties['goods_name']['name'] = '品牌';
+		$goods['goods_brand'] = remove_ks($goods['goods_brand']);
+		if ($goods['goods_brand'] == ''){
+			$goods['goods_brand'] = '见包装';
+		}
+		$temp_properties['goods_name']['value'] = $goods['goods_brand'];
+		foreach($properties['pro']['商品属性'] as $key => $value){
+						$temp_properties[] = $value;
+		}
+		$properties['pro']['商品属性'] = $temp_properties;$temp_properties = array();
+		
+
+		/* 高级会员价in人民币 */
+		$rank_price_list = get_user_rank_prices($goods_id, $shop_price);
+		if ($_SESSION['user_id'] > 0)
+        {
+			$smarty->assign('premium_discount', round(floatval(substr($rank_price_list[3]['price'],4)) * floatval($xe), 1));
+		}
+		
+		
+		
+		
+		//所有产品图片//
+		$all_goods_pic = get_goods_gallery($goods_id);
+
+		//showr($all_goods_pic);
+		$pictures_thumbnail_section = array();
+		$pictures_detail_section = array();
+//showr($pictures_thumbnail_section);
+//showr($pictures_detail_section);
+		foreach ($all_goods_pic as $key => $value){
+			if ($value['img_show_in_thumbnail'] == 1){$pictures_thumbnail_section[] = $value;}
+			if ($value['img_show_in_detail'] == 1){$pictures_detail_section[] = $value;}
+		}
+		//结束产品图片////
+		
+
+		//特色吃法图片//
+		$use_img = get_goods_use_img($goods_id);
+		$use_img = $use_img[0];
+		//结束特色吃法图片////
+		
+		
+		$ready_comment = $ready_comment_id = '';
+		if ($_REQUEST['comment'] == 'comment'){
+			$ready_comment = 'comment';
+			if(isset($_REQUEST['comment_id']) === true && $_REQUEST['comment_id'] != ''){
+				$ready_comment_id = $_REQUEST['comment_id'];
+			}
+		}
+		
+		
+	
+
+		
+		$smarty->assign('properties',          $properties['pro']);                              // 商品属性
         $smarty->assign('specification',       $properties['spe']);                              // 商品规格
         $smarty->assign('attribute_linked',    get_same_attribute_goods($properties));           // 相同属性的关联商品
         $smarty->assign('related_goods',       $linked_goods);                                   // 关联商品
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
         $smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
-        $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
-        $smarty->assign('pictures',            get_goods_gallery($goods_id));                    // 商品相册
+        $smarty->assign('rank_prices',         $rank_price_list);    // 会员等级价格
+        $smarty->assign('pictures_thumbnail_section', $pictures_thumbnail_section);                    // 商品相册缩略图区域
+        $smarty->assign('pictures_detail_section', $pictures_detail_section);                    // 商品产品细节区域
+        $smarty->assign('goods_func',          get_goods_func($goods_id));                    // 商品产品功效
+        $smarty->assign('goods_use',           get_goods_use($goods_id));                    // 商品产品功效
         $smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
         $smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
+		$smarty->assign('goods_use_img',       $use_img);   // 特色吃法图片
+        $smarty->assign('_LANG',               $GLOBALS['_LANG']);                       // 语言
+        $smarty->assign('ready_comment',      $ready_comment);                       // 从用户中心过来评论
+        $smarty->assign('ready_comment_id',   $ready_comment_id);                       // 从用户中心过来追加评论
+		$smarty->assign('all-categories',       get_categories_tree()); // 分类树
 
         //获取tag
         $tag_array = get_tags($goods_id);
@@ -272,6 +376,7 @@ else
 {
     setcookie('ECS[history]', $goods_id, gmtime() + 3600 * 24 * 30);
 }
+
 
 
 /* 更新点击次数 */
@@ -316,7 +421,8 @@ function get_linked_goods($goods_id)
         $arr[$row['goods_id']]['market_price'] = price_format($row['market_price']);
         $arr[$row['goods_id']]['shop_price']   = price_format($row['shop_price']);
         $arr[$row['goods_id']]['url']          = build_uri('goods', array('gid'=>$row['goods_id']), $row['goods_name']);
-
+		preg_match("/[^a-zA-Z]\B.*/", $row['goods_name'], $no_eng_brand);
+		$arr[$row['goods_id']]['index_short_name'] = sub_str($no_eng_brand[0], 7);
         if ($row['promote_price'] > 0)
         {
             $arr[$row['goods_id']]['promote_price'] = bargain_price($row['promote_price'], $row['promote_start_date'], $row['promote_end_date']);
@@ -620,6 +726,57 @@ function get_package_goods_list($goods_id)
     }
 
     return $res;
+}
+
+/*获取销量*/
+function get_buy_sum($goods_id)
+{
+ $sql= "select sum(goods_number) as count from ".$GLOBALS['ecs']->table('order_goods')."where goods_id ='".$goods_id."'";
+     $res = $GLOBALS['db']->getOne($sql);
+     if($res>0)       {
+         return $res;
+     }     else    {
+       return('0');
+     }
+}
+
+/*获取同类商品*/
+function get_same_cat($goods_id, $cat_id, $quantity){
+	$handle_array = array();
+	$sql = "SELECT * FROM " .$GLOBALS['ecs']->table('goods'). "WHERE cat_id = '$cat_id' AND goods_id <> '$goods_id' AND is_on_sale = 1 ORDER BY RAND() LIMIT " . $quantity;
+	
+	foreach ($GLOBALS['db']->getALL($sql) as $single){
+		if (gmtime() > $single['promote_end_date']){
+			$price = $single['shop_price'];
+		}
+		else{
+			$price = $single['promote_price'];	
+		}
+		$no_eng_brand = remove_head_eng($single['goods_name']);
+		$no_eng_brand = remove_ks($no_eng_brand);
+		//preg_match("/[^a-zA-Z]\B.*/", $single['goods_name'], $no_eng_brand);
+		$handle_array[] = array('goods_thumb' => get_image_path($single['goods_id'], $single['goods_thumb'], true),'goods_name' => $single['goods_name'],'price' => price_format($price),'url' => build_uri('goods', array('gid'=>$single['goods_id']), $single['goods_name']), 'index_short_name' =>ellipsis($no_eng_brand, 7), 'is_shipping' => $single['is_shipping']);	
+	}
+	return $handle_array;
+	
+}
+
+/*获取产品功效*/
+function get_goods_func($goods_id)
+{
+ $sql= "select goods_func_content".$_SESSION['language']." as goods_func_content, goods_func_order from ".$GLOBALS['ecs']->table('goods_func')."where goods_id ='".$goods_id."' order by goods_func_order";
+     $goods_func = $GLOBALS['db']->getAll($sql);
+	 if (count($goods_func) < 1){return array();}
+     return $goods_func;
+}
+
+/*获取特色吃法*/
+function get_goods_use($goods_id)
+{
+ $sql= "select goods_use_title".$_SESSION['language']." as goods_use_title,goods_use_content".$_SESSION['language']." as goods_use_content, goods_use_order from ".$GLOBALS['ecs']->table('goods_use')."where goods_id ='".$goods_id."' order by goods_use_order";
+     $goods_use = $GLOBALS['db']->getAll($sql);
+	 if (count($goods_use) < 1){return array();}
+     return $goods_use;
 }
 
 ?>

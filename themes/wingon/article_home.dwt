@@ -65,6 +65,8 @@
             <button type="button" class="btn btn-default" id="more_button">{$_LANG.more}</button>
         </div>
     </div>
+    <div style="height:10px;">
+    </div>
 
     <!-- #BeginLibraryItem "/library/page_footer.lbi" -->
     <!-- #EndLibraryItem -->

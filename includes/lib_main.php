@@ -433,7 +433,7 @@ function assign_articles($id, $num)
  */
 function get_shop_help()
 {
-    $sql = 'SELECT c.cat_id, c.cat_name, c.sort_order, a.article_id, a.title, a.file_url, a.open_type ' .
+    $sql = 'SELECT c.cat_id, c.cat_name'.$_SESSION['language'].', c.sort_order, a.article_id, a.title'.$_SESSION['language'].', a.file_url, a.open_type ' .
             'FROM ' .$GLOBALS['ecs']->table('article'). ' AS a ' .
             'LEFT JOIN ' .$GLOBALS['ecs']->table('article_cat'). ' AS c ' .
             'ON a.cat_id = c.cat_id WHERE c.cat_type = 5 AND a.is_open = 1 ' .
@@ -444,13 +444,13 @@ function get_shop_help()
     foreach ($res AS $key => $row)
     {
         $arr[$row['cat_id']]['cat_id']                       = build_uri('article_cat', array('acid'=> $row['cat_id']), $row['cat_name']);
-        $arr[$row['cat_id']]['cat_name']                     = $row['cat_name'];
+        $arr[$row['cat_id']]['cat_name']                     = $row['cat_name'.$_SESSION['language'].''];
         $arr[$row['cat_id']]['article'][$key]['article_id']  = $row['article_id'];
-        $arr[$row['cat_id']]['article'][$key]['title']       = $row['title'];
+        $arr[$row['cat_id']]['article'][$key]['title']       = $row['title'.$_SESSION['language'].''];
         $arr[$row['cat_id']]['article'][$key]['short_title'] = $GLOBALS['_CFG']['article_title_length'] > 0 ?
-            sub_str($row['title'], $GLOBALS['_CFG']['article_title_length']) : $row['title'];
+            sub_str($row['title'.$_SESSION['language'].''], $GLOBALS['_CFG']['article_title_length']) : $row['title'];
         $arr[$row['cat_id']]['article'][$key]['url']         = $row['open_type'] != 1 ?
-            build_uri('article', array('aid' => $row['article_id']), $row['title']) : trim($row['file_url']);
+            build_uri('article', array('aid' => $row['article_id']), $row['title'.$_SESSION['language'].'']) : trim($row['file_url']);
     }
 
     return $arr;

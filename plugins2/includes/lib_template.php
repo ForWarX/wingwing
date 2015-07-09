@@ -47,6 +47,7 @@ $template_files = array(
     'auction.dwt',
     'message_board.dwt',
     'exchange_list.dwt',
+	'products.dwt',
 );
 
 /* 每个模板允许设置的库项目 */
@@ -259,6 +260,12 @@ $page_libs = array(
         '/library/pages.lbi' => 0,
         '/library/exchange_hot.lbi' => 5,
         '/library/exchange_list.lbi' => 0,
+    ),
+    'products' => array(
+        '/library/recommend_best.lbi' => 30,
+        '/library/recommend_new.lbi' => 30,
+        '/library/recommend_hot.lbi' => 30,
+		'/library/recommend_promotion.lbi' => 30,
     ),
 );
 

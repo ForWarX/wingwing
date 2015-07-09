@@ -27,7 +27,7 @@
   <div class="article-content  shadow">
     <div class="box">
      <div class="box_1">
-      <div style="border:4px solid #fcf8f7; background-color:#fff; padding:20px 15px;">
+      <div style="border:4px solid #fcf8f7; background-color:#fff; padding:20px 60px;  font-size: 1.2em;">
          <div class="tc" style="padding:8px;">
          {$article.title|escape:html}<br /><!--<font class="f3">{$article.author|escape:html} / {$article.add_time}</font>-->
          </div>
