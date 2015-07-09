@@ -2985,6 +2985,7 @@ color: #c0c0c0;
 .yamm .dropup,
 .yamm .dropdown {
   position: static;
+  margin-right: 0;
 }
 .yamm .container {
   position: relative;
@@ -3025,8 +3026,12 @@ color: #c0c0c0;
 @media only screen and  ( max-width:766px) {
     .yamm .dropdown {
         display: inline-block;
-        width: 30%;
+        width: 32%;
+		padding-left:5vw;
     }
+	.yamm .dropdown .yamm-fw a {
+	text-align:center;
+	}
     .yamm .dropdown.yamm-fw .dropdown-menu {
         float: left;
         width: 333%;
@@ -3131,7 +3136,7 @@ color: #c0c0c0;
     position: absolute;
     float: top;
     right: 0px;
-    bottom: 10px;
+    bottom: 18px;
   background: #d9344a;
   background-image: -webkit-linear-gradient(top, #d9344a, #b82b7f);
   background-image: -moz-linear-gradient(top, #d9344a, #b82b7f);
@@ -3141,7 +3146,7 @@ color: #c0c0c0;
   font-family: Arial;
   color: #ffffff;
   font-size: 18px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 5px 20px;
   text-decoration: none;
 }
  
