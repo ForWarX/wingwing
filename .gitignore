@@ -1,2 +1,4 @@
 
 data/config.php
+temp/query_caches
+images/
