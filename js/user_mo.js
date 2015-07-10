@@ -556,7 +556,7 @@ function register()
   }
 }
 
-function register2(button_name)
+function register2()
 {
   var frm  = document.forms['formUser'];
   var username  = Utils.trim(frm.elements['username'].value);
@@ -669,13 +669,7 @@ function register2(button_name)
 
   if (msg.length > 0)
   {
-	  
-	  if(document.all && !document.addEventListener){
-				alert(msg);
-			}
-			else{
-				swal({   title: "",   text: msg,   type: "error",   confirmButtonText: button_name, html: false });
-			}
+    alert(msg);
     return false;
   }
   else
@@ -781,6 +775,68 @@ function submitSurplus()
 
   return true;
 }
+
+/* *
+ * 会员P币充值
+ */
+function submitPcoin(frm)
+{
+ // var frm            = document.forms['formSurplus'];
+  var surplus_type   = frm.elements['surplus_type'].value;
+  var surplus_amount = frm.elements['amount'].value;
+  var process_notic  = frm.elements['user_note'].value;
+  var payment_id     = 0;
+  var msg = '';
+
+  if (surplus_amount.length == 0 )
+  {
+    msg += surplus_amount_empty + "\n";
+  }
+  else
+  {
+    var reg = /^[\.0-9]+/;
+    if ( ! reg.test(surplus_amount))
+    {
+      msg += surplus_amount_error + '\n';
+    }
+  }
+  if (surplus_amount.length < 3)
+  {
+	  msg += "最小充值金额为人民币100元" + "\n";
+  }
+
+  if (process_notic.length == 0)
+  {
+    msg += process_desc + "\n";
+  }
+
+  if (msg.length > 0)
+  {
+    alert(msg);
+    return false;
+  }
+
+  if (surplus_type == 0)
+  {
+    for (i = 0; i < frm.elements.length ; i ++)
+    {
+      if (frm.elements[i].name=="payment_id" && frm.elements[i].checked)
+      {
+        payment_id = frm.elements[i].value;
+        break;
+      }
+    }
+
+    if (payment_id == 0)
+    {
+      alert(payment_empty);
+      return false;
+    }
+  }
+
+  return true;
+}
+
 
 /* *
  *  处理用户添加一个红包

@@ -57,7 +57,7 @@
             </td>
           </tr>
 		  		  <tr height="20"><td></td></tr>
-	  <tr><td><a href="user.php?act=qpassword_name" class="f3" style="  color: #EDEDED;">{$lang.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3" style="  color: #EDEDED;">{$lang.get_password_by_mail}</a></td></tr>
+	  <tr><td><a href="user.php?act=qpassword_name" class="f3" style="  color: #EDEDED;">{$_LANG.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3" style="  color: #EDEDED;">{$lang.get_password_by_mail}</a></td></tr>
 	  <tr height="30"><td></td></tr>  
 	  <tr><td style="text-align:right;"><a href="user.php?act=register" class="label label-warning" style="font-size:1.2em;">{$_LANG.reg_now}</a></td></tr>	  
 	  </table>
@@ -71,82 +71,121 @@
 <!--*会员注册界面 start-->
     <!--{if $action eq 'register'}-->
     <!-- {if $shop_reg_closed eq 1} -->
-    <div class="usBox shadow">
+    <div class="usBox shadow" >
       <div class="usBox_2 clearfix">
-        <div class="f1 f5" align="center">{$lang.shop_register_closed}</div>
+        <div class="f1 f5" align="center">{$_LANG.shop_register_closed}</div>
       </div>
     </div>
     <!-- {else} -->
     {insert_scripts files='utils.js'}
-<div class="usBox shadow">
-  <div class="usBox_2 clearfix">
-   <div class="logtitle3"></div>
-    <form action="user.php" method="post" name="formUser" onsubmit="return register2();">
+<div class="usBox shadow"  style=" height: 700px;
+  background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
+  background-size: cover;">
+  <div class="register-form clearfix">
+    <form action="user.php" method="post" name="formUser" onsubmit="return register2('{$_LANG.ok}');">
       <table width="100%"  border="0" align="left" cellpadding="5" cellspacing="3">
-        <tr>
-          <td width="13%" align="right">{$lang.label_username}</td>
-          <td width="87%">
-          <input name="username" type="text" size="25" id="username" onblur="is_registered(this.value);" class="inputBg"/>
-            <span id="username_notice" class="f4"> *</span>
-          </td>
+	  <tr><td style="vertical-align:top;"><h1 style="margin-top:-5px;"><small style="color:#fff;">{$_LANG.sign_up}</small></h1></td></tr>
+        <tr>		  
+		<td width="85%">
+		  <div class="input-group input-group">
+		  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user" style="rgba(0,0,0, .7)"></i></span>
+		  <input name="username" type="text" class="form-control" onblur="is_registered(this.value);" placeholder="{$_LANG.member_name}" aria-describedby="sizing-addon2" required>
+		  </div>
+		</td>
         </tr>
         <tr>
-          <td align="right">{$lang.label_password}</td>
-          <td>
-          <input name="password" type="password" id="password1" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)" class="inputBg" style="width:179px;" />
-            <span class="f4" id="password_notice"> *</span>
-          </td>
+        <td><span class="input-group-addon" id="username_notice" style="background:none;border:0px;color:#fff;text-align: right;"></span>
+        </td>
         </tr>
+		<tr height="10"><td></td></tr> 
+        <tr>		       
+			<td>
+			  <div class="input-group input-group">
+			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-lock" style="rgba(0,0,0, .7)"></i></span>
+			  <input name="password" id="password1" type="password" class="form-control" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2" required>
+			  </div>
+			</td>
+        </tr>
+		<tr>
+        <td><span class="input-group-addon" id="password_notice" style="background:none;border:0px;color:#fff;text-align: right;"></span>
+        </td>
+        </tr>
+
         <tr>
-          <td align="right">{$lang.label_password_intensity}</td>
           <td>
             <table width="145" border="0" cellspacing="0" cellpadding="1">
               <tr align="center">
-                <td width="33%" id="pwd_lower">{$lang.pwd_lower}</td>
-                <td width="33%" id="pwd_middle">{$lang.pwd_middle}</td>
-                <td width="33%" id="pwd_high">{$lang.pwd_high}</td>
+			    <td align="left" width="40%" style="color:#F0AD4E;">{$_LANG.label_password_intensity}</td>
+                <td width="20%" id="pwd_lower" style="color:#CFCFCF;">{$_LANG.pwd_lower}</td>
+                <td width="20%" id="pwd_middle" style="color:#CFCFCF;">{$_LANG.pwd_middle}</td>
+                <td width="" id="pwd_high" style="color:#CFCFCF;">{$_LANG.pwd_high}</td>
               </tr>
             </table>
           </td>
         </tr>
+		<tr height="10"><td></td></tr>
         <tr>
-          <td align="right">{$lang.label_confirm_password}</td>
-          <td>
-          <input name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);"  class="inputBg" style="width:179px;"/>
-            <span class="f4" id="conform_password_notice"> *</span>
-          </td>
+		  	<td>
+			  <div class="input-group input-group">
+			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-repeat" style="rgba(0,0,0, .7)"></i></span>
+			  <input name="confirm_password" type="password" class="form-control" id="conform_password" onblur="check_conform_password(this.value);" placeholder="{$_LANG.confirm_password}" aria-describedby="sizing-addon2" required>
+			  </div>
+			</td>
         </tr>
+
+		<tr>
+        <td><span class="input-group-addon" id="conform_password_notice" style="background:none;border:0px;color:#fff;text-align: right;"></span>
+        </td>
+        </tr>	
+		<tr height="20"><td></td></tr>
         <!-- {foreach from=$extend_info_list item=field} -->
-	<!-- {if $field.id eq 6} -->
+		<tr height="5"><td></td></tr>
+		<!-- {if $field.id eq 6} -->
         
-        <tr>
-          <td align="right">{$lang.label_email}</td>
-          <td>
-          <input name="email" type="text" size="25" id="email" class="inputBg"/>
-          </td>
+        <tr>		  
+		<td width="85%">
+		  <div class="input-group input-group">
+		  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-envelope" style="rgba(0,0,0, .7)"></i></span>
+		  <input name="email" type="text" class="form-control" placeholder="{$_LANG.contact_form_email}" aria-describedby="sizing-addon2" required>
+		  </div>
+		</td>
         </tr>
-        <tr>
-          <td align="right">{$lang.passwd_question}</td>
-          <td>
-          <select name='sel_question'>
-	  <option value='0'>{$lang.sel_question}</option>
-	  {html_options options=$passwd_questions}
-	  </select>
-          </td>
+		<tr height="5"><td></td></tr>			
+        <tr>		
+		 <td width="85%">
+		  <div class="input-group input-group">
+		  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-question-sign" style="rgba(0,0,0, .7)" title="{$_LANG.passwd_question}"></i></span>
+		  <select class="form-control" name='sel_question'>
+			<option value='0'>{$_LANG.sel_question}</option>
+			{html_options options=$passwd_questions}
+		  </select>
+		  </div>
+		</td>
         </tr>
+		<tr height="5"><td></td></tr>
         <tr>
-          <td align="right" <!-- {if $field.is_need} -->id="passwd_quesetion"<!--{/if}-->>{$lang.passwd_answer}</td>
-          <td>
-	  <input name="passwd_answer" type="text" size="25" class="inputBg" maxlengt='20'/><!-- {if $field.is_need} --><span class="f4"> *</span><!-- {/if} -->
-          </td>
+ 		<td width="85%">
+		  <div class="input-group input-group">
+		  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-pencil" style="rgba(0,0,0, .7)"></i></span>
+		  <input name="passwd_answer" type="text" class="form-control" placeholder="{$_LANG.password_answer}" aria-describedby="sizing-addon2" required>
+		  </div>
+		</td>
         </tr>
 	<!-- {else} -->
+		<tr height="5"><td></td></tr>	
         <tr>
-          <td align="right" <!-- {if $field.is_need} -->id="extend_field{$field.id}i"<!--{/if}-->>{$field.reg_field_name}
-          <td>
-          <input name="extend_field{$field.id}" type="text" size="25" class="inputBg" /><!-- {if $field.is_need} --><span class="f4"> *</span><!-- {/if} -->
-          </td>
+		<td width="85%">
+		  <div class="input-group input-group">
+		  <span class="input-group-addon" id="sizing-addon2">
+		  <!-- {if $field.id eq 5}-->
+		  <i class="glyphicon glyphicon-phone" style="rgba(0,0,0, .7)"></i>
+		  <!--{/if}-->
+		  </span>
+		  <input name="extend_field{$field.id}" type="text" class="form-control" placeholder="{$_LANG.phone}" aria-describedby="sizing-addon2"  required>
+		  </div>
+		</td>
         </tr>
+		
 	<!-- {/if} -->
 	<!-- {/foreach} -->
       <!-- 判断是否启用验证码{if $enabled_captcha} -->
@@ -156,27 +195,28 @@
       <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> </td>
       </tr>
       <!--{/if}-->
+		<tr height="10"><td></td></tr>
         <tr>
-          <td>&nbsp;</td>
-          <td><label>
-            <input name="agreement" type="checkbox" value="1" checked="checked" />
-            {$lang.agreement}</label></td>
+          <td><label style="color:#F2F2F2;">
+			<input type="checkbox" name="agreement" value="1" checked="checked"aria-label="...">
+            {$_LANG.agreement}</label></td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
           <td align="left">
           <input name="act" type="hidden" value="act_register" >
           <input type="hidden" name="back_act" value="{$back_act}" />
-          <input name="Submit" type="submit" value="" class="us_Submit_reg">
+		  <button type="Submit" name="Submit" class="btn btn-warning" style="  width: 100%;">{$_LANG.reg_now}</button>
           </td>
         </tr>
+		
         <tr>
-          <td colspan="2">&nbsp;</td>
+          <td>&nbsp;</td>
         </tr>
                  <tr>
-                    <td bgcolor="#ffffff" colspan="2" align="center"><a href="user.php?act=qpassword_name" class="f6">{$lang.get_password_by_question}</a>   <a href="user.php?act=get_password" class="f6">{$lang.get_password_by_mail}</a></td>
+                    <td colspan="2" align="center"><a href="user.php?act=qpassword_name" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_question}</a>   <a href="user.php?act=get_password" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_mail}</a></td>
                   </tr>
-
+	  <tr height="30"><td></td></tr>  
+	  <tr><td style="text-align:right;"><a href="user.php" class="label label-primary" style="font-size:1.2em;">{$_LANG.login}</a></td></tr>	  
       </table>
     </form>
   </div>

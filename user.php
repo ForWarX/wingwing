@@ -486,7 +486,6 @@ elseif ($action == 'profile')
             default:    $extend_info_list[$key]['content'] = empty($temp_arr[$val['id']]) ? '' : $temp_arr[$val['id']] ;
         }
     }
-
     $smarty->assign('extend_info_list', $extend_info_list);
 
     /* 密码提示问题 */

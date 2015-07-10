@@ -495,6 +495,8 @@ $_LANG['welcome'] = '欢迎光临本店';
 $_LANG['user_login'] = '会员登陆';
 $_LANG['login_now'] = '立即登陆';
 $_LANG['reg_now'] = '立即注册';
+$_LANG['password_answer'] = '你的密码提示';
+$_LANG['phone'] = '手机号';
 
 /* 商品品牌页 */
 $_LANG['official_site'] = '官方网站：';

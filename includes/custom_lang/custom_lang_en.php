@@ -493,6 +493,8 @@ $_LANG['welcome'] = 'Welcome';
 $_LANG['user_login'] = 'User login';
 $_LANG['login_now'] = 'Login now';
 $_LANG['reg_now'] = 'Register now';
+$_LANG['password_answer'] = 'Your answer to the password question';
+$_LANG['phone'] = 'Cell Phone';
 
 /* 商品品牌页 */
 $_LANG['official_site'] = 'Official website:';
