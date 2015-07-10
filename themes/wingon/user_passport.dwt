@@ -78,7 +78,7 @@
     </div>
     <!-- {else} -->
     {insert_scripts files='utils.js'}
-<div class="usBox shadow"  style=" height: 700px;
+<div class="usBox shadow"  style=" height: 900px;
   background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
   background-size: cover;">
   <div class="register-form clearfix">
@@ -113,11 +113,14 @@
 
         <tr>
           <td>
-            <table width="145" border="0" cellspacing="0" cellpadding="1">
+            <table width="200" border="0" cellspacing="0" cellpadding="1">
               <tr align="center">
-			    <td align="left" width="40%" style="color:#F0AD4E;">{$_LANG.label_password_intensity}</td>
-                <td width="20%" id="pwd_lower" style="color:#CFCFCF;">{$_LANG.pwd_lower}</td>
-                <td width="20%" id="pwd_middle" style="color:#CFCFCF;">{$_LANG.pwd_middle}</td>
+			    <td align="left" width="50%" style="color:#F0AD4E;">{$_LANG.label_password_intensity}</td>
+				<td width="2%"></td>
+                <td width="16%" id="pwd_lower" style="color:#CFCFCF;">{$_LANG.pwd_lower}</td>
+				<td width="2%"></td>
+                <td width="16%" id="pwd_middle" style="color:#CFCFCF;">{$_LANG.pwd_middle}</td>
+				<td width="2%"></td>
                 <td width="" id="pwd_high" style="color:#CFCFCF;">{$_LANG.pwd_high}</td>
               </tr>
             </table>
@@ -137,11 +140,10 @@
         <td><span class="input-group-addon" id="conform_password_notice" style="background:none;border:0px;color:#fff;text-align: right;"></span>
         </td>
         </tr>	
-		<tr height="20"><td></td></tr>
+		<tr height="10"><td></td></tr>
         <!-- {foreach from=$extend_info_list item=field} -->
 		<tr height="5"><td></td></tr>
-		<!-- {if $field.id eq 6} -->
-        
+		<!-- {if $field.id eq 6} --> 	
         <tr>		  
 		<td width="85%">
 		  <div class="input-group input-group">
@@ -150,7 +152,7 @@
 		  </div>
 		</td>
         </tr>
-		<tr height="5"><td></td></tr>			
+		<tr height="30"><td></td></tr>			
         <tr>		
 		 <td width="85%">
 		  <div class="input-group input-group">
@@ -171,6 +173,7 @@
 		  </div>
 		</td>
         </tr>
+		<tr height="20"><td></td></tr>
 	<!-- {else} -->
 		<tr height="5"><td></td></tr>	
         <tr>
@@ -213,8 +216,11 @@
           <td>&nbsp;</td>
         </tr>
                  <tr>
-                    <td colspan="2" align="center"><a href="user.php?act=qpassword_name" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_question}</a>   <a href="user.php?act=get_password" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_mail}</a></td>
-                  </tr>
+                    <td colspan="2" align="left"><a href="user.php?act=qpassword_name" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_question}</a>
+				 </tr>
+				 <tr>
+                    <td colspan="2" align="left"><a href="user.php?act=get_password" class="f6" style="color:#C7C7C7;">{$_LANG.get_password_by_mail}</a></td>
+                 </tr>
 	  <tr height="30"><td></td></tr>  
 	  <tr><td style="text-align:right;"><a href="user.php" class="label label-primary" style="font-size:1.2em;">{$_LANG.login}</a></td></tr>	  
       </table>

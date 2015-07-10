@@ -121,7 +121,7 @@ $_LANG['add_user_bonus'] = '添加一个红包';
 $_LANG['bonus_number'] = '红包序列号';
 $_LANG['old_password'] = '原密码';
 $_LANG['new_password'] = '新密码';
-$_LANG['confirm_password'] = '确认密码';
+//$_LANG['confirm_password'] = '确认密码';
 
 $_LANG['bonus_sn_exist'] = '此红包号码已经被占用了！';
 $_LANG['bonus_sn_not_exist'] = '此红包号码不存在！';
@@ -161,7 +161,7 @@ $_LANG['city_district'] = '城市/地区';
 $_LANG['email_address'] = '电子邮件地址';
 $_LANG['detailed_address'] = '详细地址';
 $_LANG['postalcode'] = '邮政编码';
-$_LANG['phone'] = '电话';
+//$_LANG['phone'] = '电话';
 $_LANG['mobile'] = '手机';
 $_LANG['backup_phone'] = '手机';
 $_LANG['sign_building'] = '标志建筑';
@@ -372,18 +372,18 @@ $_LANG['update_address'] = '更新收货人信息';
 $_LANG['virtual_card_info'] = '虚拟卡信息';
 
 /* 取回密码 */
-$_LANG['back_home_lnk'] = '返回首页';
+/*$_LANG['back_home_lnk'] = '返回首页';
 $_LANG['get_password_lnk'] = '返回获取密码页面';
 $_LANG['get_password_by_question'] = '密码问题找回密码';
 $_LANG['get_password_by_mail'] = '注册邮件找回密码';
-$_LANG['back_retry_answer'] = '返回重试';
+$_LANG['back_retry_answer'] = '返回重试';*/
 
 /* 登录 注册 */
 $_LANG['label_username'] = '用户名';
 $_LANG['label_email'] = 'email';
 $_LANG['label_password'] = '密码';
-$_LANG['label_confirm_password'] = '确认密码';
-$_LANG['label_password_intensity'] = '密码强度';
+//$_LANG['label_confirm_password'] = '确认密码';
+//$_LANG['label_password_intensity'] = '密码强度';
 $_LANG['want_login'] = '我已有账号，我要登录';
 $_LANG['other_msn'] = 'MSN';
 $_LANG['other_qq'] = 'QQ';
@@ -420,7 +420,7 @@ $_LANG['username_exist'] = '用户名 %s 已经存在';
 $_LANG['username_not_allow'] = '用户名 %s 不允许注册';
 $_LANG['confirm_register'] = '确认注册';
 
-$_LANG['agreement'] = "我已看过并接受《<a href=\"article.php?cat_id=-1\" style=\"color:rgb(240, 173, 78);\" target=\"_blank\">用户协议</a>》";
+//$_LANG['agreement'] = "我已看过并接受《<a href=\"article.php?cat_id=-1\" style=\"color:rgb(240, 173, 78);\" target=\"_blank\">用户协议</a>》";
 
 $_LANG['email_empty'] = 'email为空';
 $_LANG['email_invalid'] = '%s 不是合法的email地址';
@@ -429,10 +429,10 @@ $_LANG['email_not_allow'] = 'Email %s 不允许注册';
 $_LANG['register'] = '注册新用户名';
 $_LANG['register_success'] = '用户名 %s 注册成功';
 
-$_LANG['passwd_question'] = '密码提示问题';
+/*$_LANG['passwd_question'] = '密码提示问题';
 $_LANG['sel_question'] = '请选择密码提示问题';
 $_LANG['passwd_answer'] = '密码问题答案';
-$_LANG['passwd_balnk'] = '密码中不能包含空格';
+$_LANG['passwd_balnk'] = '密码中不能包含空格';*/
 
 /* 用户中心默认页面 */
 $_LANG['welcome_to'] = '欢迎您回到';
@@ -480,7 +480,7 @@ $_LANG['no_tag'] = '暂时没有标签';
 $_LANG['confirm_drop_tag'] = '您确认要删除此标签吗？';
 
 /* user_passport.dwt js语言文件 */
-$_LANG['passport_js']['username_empty'] = '- 用户名不能为空。';
+/*$_LANG['passport_js']['username_empty'] = '- 用户名不能为空。';
 $_LANG['passport_js']['username_shorter'] = '- 用户名长度不能少于 3 个字符。';
 $_LANG['passport_js']['username_invalid'] = '- 用户名只能是由字母数字以及下划线组成。';
 $_LANG['passport_js']['password_empty'] = '- 登录密码不能为空。';
@@ -504,7 +504,7 @@ $_LANG['passport_js']['msg_email_registered'] = '<i class=\"glyphicon glyphicon-
 $_LANG['passport_js']['msg_email_format'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> 邮件地址不合法';
 $_LANG['passport_js']['msg_blank'] = '不能为空';
 $_LANG['passport_js']['no_select_question'] = '- 您没有完成密码提示问题的操作';
-$_LANG['passport_js']['passwd_balnk'] = '- 密码中不能包含空格';
+$_LANG['passport_js']['passwd_balnk'] = '- 密码中不能包含空格';*/
 
 
 /* user_clips.dwt js 语言文件 */
@@ -658,9 +658,9 @@ $_LANG['rank_points'] = '商城等级积分';
 $_LANG['pay_points'] = '商城消费积分';
 
 /* 密码强度 */
-$_LANG['pwd_lower'] = '弱';
+/*$_LANG['pwd_lower'] = '弱';
 $_LANG['pwd_middle'] = '中';
-$_LANG['pwd_high'] = '强';
+$_LANG['pwd_high'] = '强';*/
 $_LANG['user_reg_info'][0] = '如果您不是会员，请注册';
 $_LANG['user_reg_info'][1] = '友情提示';
 $_LANG['user_reg_info'][2] = '不注册为会员也可在本店购买商品';
@@ -673,7 +673,7 @@ $_LANG['user_reg_info'][7] = '订阅本店商品信息';
 $_LANG['add_bonus'] = '添加红包';
 
 /* 密码找回问题 */
-$_LANG['passwd_questions']['friend_birthday'] = '我最好朋友的生日？';
+/*$_LANG['passwd_questions']['friend_birthday'] = '我最好朋友的生日？';
 $_LANG['passwd_questions']['old_address']     = '我儿时居住地的地址？';
 $_LANG['passwd_questions']['motto']           = '我的座右铭是？';
 $_LANG['passwd_questions']['favorite_movie']  = '我最喜爱的电影？';
@@ -681,6 +681,6 @@ $_LANG['passwd_questions']['favorite_song']   = '我最喜爱的歌曲？';
 $_LANG['passwd_questions']['favorite_food']   = '我最喜爱的食物？';
 $_LANG['passwd_questions']['interest']        = '我最大的爱好？';
 $_LANG['passwd_questions']['favorite_novel']  = '我最喜欢的小说？';
-$_LANG['passwd_questions']['favorite_equipe'] = '我最喜欢的运动队？';
+$_LANG['passwd_questions']['favorite_equipe'] = '我最喜欢的运动队？';*/
 
 ?>

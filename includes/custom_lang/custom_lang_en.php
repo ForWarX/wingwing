@@ -475,7 +475,7 @@ $_LANG['notice_eg_integral'] = 'Mall of goods consumed integral points：';
 $_LANG['eg_error_number'] = 'Sorry, stock merchandise, and now can not be exchanged!';
 
 /* 会员登录注册 */
-$_LANG['member_name'] = 'User Name';
+$_LANG['member_name'] = 'Username';
 $_LANG['password'] = 'Password';
 $_LANG['confirm_password'] = 'Re-enter password.';
 $_LANG['sign_up'] = 'Register';
@@ -495,6 +495,62 @@ $_LANG['login_now'] = 'Login now';
 $_LANG['reg_now'] = 'Register now';
 $_LANG['password_answer'] = 'Your answer to the password question';
 $_LANG['phone'] = 'Cell Phone';
+
+$_LANG['label_password_intensity'] = 'Secure level';
+$_LANG['pwd_lower'] = 'weak';
+$_LANG['pwd_middle'] = 'medium';
+$_LANG['pwd_high'] = 'strong';
+$_LANG['agreement'] = "I have read and agree <<a href=\"article.php?cat_id=-1\" style=\"color:rgb(240, 173, 78);\" target=\"_blank\">User Agreement</a>> ";
+
+/* user_passport.dwt js语言文件 */
+$_LANG['passport_js']['username_empty'] = '- Username cannot be empty';
+$_LANG['passport_js']['username_shorter'] = '- Username cannot be less than 3 characters';
+$_LANG['passport_js']['username_invalid'] = '- Username can only be the combination of characters and(or) number and(or) underscore';
+$_LANG['passport_js']['password_empty'] = '- Password cannot be empty';
+$_LANG['passport_js']['password_shorter'] = '- Password cannot less than 6 characters';
+$_LANG['passport_js']['confirm_password_invalid'] = '- Password does not match';
+$_LANG['passport_js']['email_empty'] = '- Empty email';
+$_LANG['passport_js']['email_invalid'] = '- Invalid email';
+$_LANG['passport_js']['agreement'] = '- You disagree the agreement';
+$_LANG['passport_js']['msn_invalid'] = '- msn地址不是一个有效的邮件地址';
+$_LANG['passport_js']['qq_invalid'] = '- QQ号码不是一个有效的号码';
+$_LANG['passport_js']['home_phone_invalid'] = '- 家庭电话不是一个有效号码';
+$_LANG['passport_js']['office_phone_invalid'] = '- 办公电话不是一个有效号码';
+$_LANG['passport_js']['mobile_phone_invalid'] = '- Cellphone number is not valid';
+$_LANG['passport_js']['msg_un_blank'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Username cannot be empty';
+$_LANG['passport_js']['msg_un_length'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Username cannot be longer than 14 characters';
+$_LANG['passport_js']['msg_un_format'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Illigal characters within username';
+$_LANG['passport_js']['msg_un_registered'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Duplicate username, please re-enter';
+$_LANG['passport_js']['msg_can_rg'] = '<i class=\"glyphicon glyphicon-ok-sign\"></i> Available';
+$_LANG['passport_js']['msg_email_blank'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Email cannot be empty';
+$_LANG['passport_js']['msg_email_registered'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> Duplicate email address, please re-enter';
+$_LANG['passport_js']['msg_email_format'] = '<i class=\"glyphicon glyphicon-remove-sign\"></i> invalid email address format';
+$_LANG['passport_js']['msg_blank'] = 'Cannot be empty';
+$_LANG['passport_js']['no_select_question'] = '- You have not select the security question';
+$_LANG['passport_js']['passwd_balnk'] = '- Password cannot contain space';
+
+$_LANG['passwd_question'] = 'Security question';
+$_LANG['sel_question'] = 'Please select a security question';
+$_LANG['passwd_answer'] = 'Security answer';
+$_LANG['passwd_balnk'] = 'Password cannot contain space';
+
+/* 密码找回问题 */
+$_LANG['passwd_questions']['friend_birthday'] = 'The birthday of my best friend is?';
+$_LANG['passwd_questions']['old_address']     = 'where did I live when I was child?';
+$_LANG['passwd_questions']['motto']           = 'What is my motto?';
+$_LANG['passwd_questions']['favorite_movie']  = 'what is my favourite movie?';
+$_LANG['passwd_questions']['favorite_song']   = 'what is my favourite song?';
+$_LANG['passwd_questions']['favorite_food']   = 'what is my favourite food?';
+$_LANG['passwd_questions']['interest']        = 'what is my favourite hobby?';
+$_LANG['passwd_questions']['favorite_novel']  = 'what is my novel?';
+$_LANG['passwd_questions']['favorite_equipe'] = 'what is my favourite equipe?';
+
+/* 取回密码 */
+$_LANG['back_home_lnk'] = 'Back to home page';
+$_LANG['get_password_lnk'] = 'Back to get password page';
+$_LANG['get_password_by_question'] = 'Get password by security answer';
+$_LANG['get_password_by_mail'] = 'Get password by email';
+$_LANG['back_retry_answer'] = 'Back to retry';
 
 /* 商品品牌页 */
 $_LANG['official_site'] = 'Official website:';
