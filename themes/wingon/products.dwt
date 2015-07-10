@@ -15,6 +15,7 @@
 <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
 <link href="portfolio.css" rel="stylesheet" type="text/css" />
 <link href="icomoon.css" rel="stylesheet" type="text/css" />
+<link href="prettyPhoto.css" rel="stylesheet" type="text/css" />
 
 <link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
 {* 包含脚本文件 *}
@@ -270,7 +271,7 @@
 	    </div>
 		
 	</div>
-        
+        <!--
 		<div class="feature_items" style="height: 300px; align: center;">
 			<div style="width:33.33%; font-size:2em; float:left; position:relative;">
 				<div style="width: 100%; font-size:1em; text-align: center; background-color: #FFCC33; color: white; ">
@@ -298,19 +299,36 @@
 				</div>
 			</div>
 		</div>
+		-->
+		<div class="logo_display" style="width: 100%; text-align: center;">
+			<!--
+			<div class=col-sm-4>
+				<h1>TEST</h1>
+			</div>
+			<div class=col-sm-4>
+				<h1>TEST2</h1>
+			</div>
+			<div class=col-sm-4>
+				<h1>TEST3</h1>
+			</div>
+		-->
 		
-		
-		
+
+
+	    
+
+			</div>
+
+
 
 		
 		<section class="latest-works">
     <nav class="primary clearfix" style="text-decoration: none;">
          <div class="portfolioFilters">
-           <a href="#" class="selected" data-filter="*">All</a>
-           <a class="" href="#" data-filter=".web">Web Design</a>
-           <a class="" href="#" data-filter=".logg">Logo</a>
-           <a class="" href="#" data-filter=".video">Video</a>
-           <a class="" href="#" data-filter=".print">Print </a>
+           <a href="#" class="selected" data-filter="*">全部</a>
+           <a class="" href="#" data-filter=".hot">热销产品</a>
+           <a class="" href="#" data-filter=".new">最新产品</a>
+           <a class="" href="#" data-filter=".best">推荐产品</a>
    		</div>
        </nav>	
 		
@@ -318,71 +336,34 @@
 		
 		
 		<div class="portfolio" style="z-index: 0;">
-
-		  <figure class="portfolio-item  video print ">
-		        <div class="img-item">  <img src="images/portfo/portx4.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx4.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-         
-		  <figure class="portfolio-item  web logg ">
-		        <div class="img-item">  <img src="images/portfo/portx1.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx1.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  web logg ">
-		        <div class="img-item">  <img src="images/portfo/portx2.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx2.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  print video ">
-		        <div class="img-item">  <img src="images/portfo/portx3.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx3.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  logg print ">
-		        <div class="img-item">  <img src="images/portfo/portx5.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx5.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  video web ">
-		        <div class="img-item">  <img src="images/portfo/portx13.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx13.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  logg print ">
-		        <div class="img-item">  <img src="images/portfo/portx7.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx7.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-         
-		  <figure class="portfolio-item  web ">
-		        <div class="img-item">  <img src="images/portfo/portx8.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx8.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item logg ">
-		        <div class="img-item">  <img src="images/portfo/portx9.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx9.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item video ">
-		        <div class="img-item">  <img src="images/portfo/portx10.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx10.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item web ">
-		        <div class="img-item">  <img src="images/portfo/portx11.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx11.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-			    <figure class="portfolio-item  video">
-		        <div class="img-item">  <img src="images/portfo/portx12.jpg" alt="" >
-				<div class="zoomex2"><h6>Spoilt for choice<br><small>29 oct 2013</small></h6><a href="images/portfo/portx12.jpg" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
-		      </figure>
-		      <!-- end-portfolio-item-->
-		    </div>	
+			<!--{foreach from=$hot_goods item=hg}-->
+			<figure class="portfolio-item hot">
+				<div class="img-item"> <img src="/wingwing/{$hg.goods_img}" alt="" >
+				<div class="zoomex2"><h6>{$hg.name}<br><small>{$hg.shop_price}</small></h6><a href="/wingwing/{$hg.goods_img}" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
+					
+			</figure>
+			<!--{/foreach}-->
+			
+			<!--{foreach from=$new_goods item=ng}-->
+			<figure class="portfolio-item new">
+				<div class="img-item"> <img src="/wingwing/{$ng.goods_img}" alt="" >
+				<div class="zoomex2"><h6>{$ng.name}<br><small>{$ng.shop_price}</small></h6><a href="/wingwing/{$ng.goods_img}" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
+					
+			</figure>
+			<!--{/foreach}-->
+			
+			<!--{foreach from=$best_goods item=bg}-->
+			<figure class="portfolio-item best">
+				<div class="img-item"> <img src="/wingwing/{$bg.goods_img}" alt="" >
+				<div class="zoomex2"><h6>{$bg.name}<br><small>{$bg.shop_price}</small></h6><a href="/wingwing/{$bg.goods_img}" class="prettyPhoto zoomlink1" ><i class="icomoon-plus"></i></a><a href="portfolio-item.html" class="zoomlink2" ><i class="icomoon-arrow-right-5"></i></a></div></div>
+					
+			</figure>
+			<!--{/foreach}-->
+			
+		  
+		    
 		</div>
+		<script src="js/jquery.prettyPhoto.js" ></script>
 	</section>
 		<script>
 		  // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
@@ -394,10 +375,49 @@
 		  $('.dropdown').on('hide.bs.dropdown', function(e){
 			$(this).find('.dropdown-menu').first().stop(true, true).slideUp();
 		  });
+		  
+		  
+		  
+		  
+		  /* ---------------------------------------------------------------------- */
+		  /*		PrettyPhoto
+		  /* ---------------------------------------------------------------------- */
+
+
+		  jQuery(document).ready(function($){
+    
+		  	    /* --------- */
+		  		/* Add PrettyPhoto */
+		  		/* ------------------------ */
+		
+		  		var lightboxArgs = {			
+		  						animation_speed: 'fast',
+		  						overlay_gallery: true,
+		  			autoplay_slideshow: false,
+		  						slideshow: 5000, /* light_rounded / dark_rounded / light_square / dark_square / facebook */
+		  									theme: 'pp_default', 
+		  									opacity: 0.8,
+		  						show_title: false,
+		  			social_tools: "",			deeplinking: false,
+		  			allow_resize: true, 			/* Resize the photos bigger than viewport. true/false */
+		  			counter_separator_label: '/', 	/* The separator for the gallery counter 1 "of" 2 */
+		  			default_width: 940,
+		  			default_height: 529
+		  		};
+
+		  		if(jQuery('a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img), a[class^="prettyPhoto"]').length){
+		  			jQuery('a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img), a[class^="prettyPhoto"]').prettyPhoto(lightboxArgs);
+		  		}
+		  		if(jQuery("a[rel^='prettyPhoto']").length){
+		  			jQuery("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal',theme:'pp_default',slideshow:3000, autoplay_slideshow: false});
+		  		}
+		
+		  });
 		</script>
+		
+		
 		
 		<!-- #BeginLibraryItem "/library/page_footer.lbi" -->
 		<!-- #EndLibraryItem -->
 		
-
 </body>
