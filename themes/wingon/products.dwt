@@ -15,7 +15,6 @@
 <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
 <link href="portfolio.css" rel="stylesheet" type="text/css" />
 <link href="icomoon.css" rel="stylesheet" type="text/css" />
-<link href="prettyPhoto.css" rel="stylesheet" type="text/css" />
 
 <link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
 {* 包含脚本文件 *}
@@ -300,24 +299,212 @@
 			</div>
 		</div>
 		-->
-		<div class="logo_display" style="width: 100%; text-align: center;">
-			<!--
-			<div class=col-sm-4>
-				<h1>TEST</h1>
+		<div class="logo_display" style="width: 100%;   text-align: center;">
+			
+				    <script>
+		        jssor_slider1_starter = function (containerId,AutoPlay,drag) {
+		           if(AutoPlay == ''){AutoPlay = false;}
+		           if(drag == ''){drag = 0;}
+
+		   
+		   
+		            var options = {
+		                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
+		                $AutoPlay: AutoPlay,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+		                $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+		                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+
+		                $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+		                $SlideEasing: $JssorEasing$.$EaseOutQuint,          //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
+		                $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+		                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+		                //$SlideWidth: 788,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+		                //$SlideHeight: 600,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+		                $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
+		                $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+		                $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+		                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+		                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+		                $DragOrientation: drag,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+               
+
+		                $BulletNavigatorOptions: {                          //[Optional] Options to specify and enable navigator or not
+		                    $Class: $JssorBulletNavigator$,                 //[Required] Class to create navigator instance
+		                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+		                    $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+		                    $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+		                    $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+		                    $SpacingX: 8,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+		                    $SpacingY: 100,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+		                    $Orientation: 1,                                //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+		                    $Scale: false                                   //Scales bullets navigator or not while slider scale
+		                },
+
+		                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+		                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+		                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+		                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+		                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+		                }
+		            };
+
+		            var jssor_slider1 = new $JssorSlider$(containerId, options);
+
+		            //responsive code begin
+		            //you can remove responsive code if you don't want the slider scales while window resizes
+		            function ScaleSlider() {
+		                var bodyWidth = document.body.clientWidth;
+		                if (bodyWidth){
+						
+		                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, bodyWidth));
+						} 
+		                else{
+		                    window.setTimeout(ScaleSlider, 30);
+						}
+		            }
+		            ScaleSlider();
+
+		            $(window).bind("load", ScaleSlider);
+		            $(window).bind("resize", ScaleSlider);
+		            $(window).bind("orientationchange", ScaleSlider);
+		            //responsive code end
+		        };
+				    </script>
+				    <!-- Jssor Slider Begin -->
+				    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+				   <div id="home-slider-wrap2" style="margin: 0 auto; left: 0px; width: 800px; height: 100px; overflow: hidden;">
+				          <!-- Loading Screen -->
+				          <div u="loading" style="position: absolute;  left: 0px;">
+				              <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+				                   left: 0px; width: 100%; height: 100%;">
+				              </div>
+				              <div style="position: absolute; display: block; background: url(images/loading.gif) no-repeat center center;
+				                   left: 0px; width: 100%; height: 100%;">
+				              </div>
+				          </div>
+				          <!-- Slides Container -->
+				          <div u="slides" style="cursor: move; position: absolute; left: 0px;  width: 800px;
+				              height: 100px; overflow: hidden;" class="products_slides_img_outer">
+  
+							  
+							 	 <div >
+									 <table>
+								  		<tr>
+								            <td><img u="image" alt="amazon" src="images/logo/amazon.jpg" /></td>
+								            <td><img u="image" alt="android" src="images/logo/android.jpg" /></td>
+								            <td><img u="image" alt="bitly" src="images/logo/bitly.jpg" /></td>
+								            <td><img u="image" alt="blogger" src="images/logo/blogger.jpg" /></td>
+								            <td><img u="image" alt="dnn" src="images/logo/dnn.jpg" /></td>
+								            <td><img u="image" alt="drupal" src="images/logo/drupal.jpg" /></td>
+								            <td><img u="image" alt="ebay" src="images/logo/ebay.jpg" /></td>
+										</tr>
+									</table>
+								</div>
+									<div>
+									<table>
+										<tr>
+								            <td><img u="image" alt="facebook" src="images/logo/facebook.jpg" /></td>
+								            <td><img u="image" alt="google" src="images/logo/google.jpg" /></td>
+								            <td><img u="image" alt="ibm" src="images/logo/ibm.jpg" /></td>
+								            <td><img u="image" alt="ios" src="images/logo/ios.jpg" /></td>
+								            <td><img u="image" alt="joomla" src="images/logo/joomla.jpg" /></td>
+								            <td><img u="image" alt="linkedin" src="images/logo/linkedin.jpg" /></td>
+								            <td><img u="image" alt="mac" src="images/logo/mac.jpg" /></td>
+										</tr>
+									</table>
+									</div>
+									<div>
+									<table>
+										<tr>
+								            <td><img u="image" alt="magento" src="images/logo/magento.jpg" /></td>
+								            <td><img u="image" alt="pinterest" src="images/logo/pinterest.jpg" /></td>
+								            <td><img u="image" alt="samsung" src="images/logo/samsung.jpg" /></td>
+								            <td><img u="image" alt="twitter" src="images/logo/twitter.jpg" /></td>
+								            <td><img u="image" alt="windows" src="images/logo/windows.jpg" /></td>
+								            <td><img u="image" alt="wordpress" src="images/logo/wordpress.jpg" /></td>
+								            <td><img u="image" alt="youtube" src="images/logo/youtube.jpg" /></td>
+										</tr>
+									</table>
+									</div>
+								  
+				          </div>
+                
+				          <!-- Bullet Navigator Skin Begin -->
+				          <style>
+				              /* jssor slider bullet navigator skin 21 css */
+				              /*
+				              .jssorb21 div           (normal)
+				              .jssorb21 div:hover     (normal mouseover)
+				              .jssorb21 .av           (active)
+				              .jssorb21 .av:hover     (active mouseover)
+				              .jssorb21 .dn           (mousedown)
+				              */
+				              .jssorb21 div, .jssorb21 div:hover, .jssorb21 .av
+				              {
+				                  background: url(images/b21-rec.png) no-repeat;
+				                  overflow:hidden;
+				                  cursor: pointer;
+				              }
+				              .jssorb21 div { background-position: -5px -5px; }
+				              .jssorb21 div:hover, .jssorb21 .av:hover { background-position: -35px -5px; }
+				              .jssorb21 .av { background-position: -65px -5px; }
+				              .jssorb21 .dn, .jssorb21 .dn:hover { background-position: -95px -5px; }
+				          </style>
+				          <!-- bullet navigator container -->
+				          <div u="navigator" class="jssorb21" style="position: absolute; bottom:5px; left: 45%;">
+				              <!-- bullet navigator item prototype -->
+				              <div u="prototype" style="POSITION: absolute; WIDTH: 19px; HEIGHT: 19px; text-align:center; line-height:19px; color:White; font-size:12px;"></div>
+				          </div>
+				          <!-- Bullet Navigator Skin End -->
+
+				          <!-- Arrow Navigator Skin Begin -->
+				          <style>
+				              /* jssor slider arrow navigator skin 21 css */
+				              /*
+				              .jssora21l              (normal)
+				              .jssora21r              (normal)
+				              .jssora21l:hover        (normal mouseover)
+				              .jssora21r:hover        (normal mouseover)
+				              .jssora21ldn            (mousedown)
+				              .jssora21rdn            (mousedown)
+				              */
+				              .jssora21l, .jssora21r, .jssora21ldn, .jssora21rdn
+				              {
+				              	position: absolute;
+				              	cursor: pointer;
+				              	display: block;
+				                  background: url(images/a01.png) center center no-repeat;
+				                  overflow: hidden;
+				              }
+				              .jssora21l { background-position: -3px -33px; }
+				              .jssora21r { background-position: -63px -33px; }
+				              .jssora21l:hover { background-position: -123px -33px; }
+				              .jssora21r:hover { background-position: -183px -33px; }
+				              .jssora21ldn { background-position: -123px -33px; }
+				              .jssora21rdn { background-position: -183px -33px; }
+				          </style>
+				          <!-- Arrow Left -->
+				          <span u="arrowleft" class="jssora21l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+				          </span>
+				          <!-- Arrow Right -->
+				          <span u="arrowright" class="jssora21r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+				          </span>
+				          <!-- Arrow Navigator Skin End -->
+				          <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+				      </div>
 			</div>
-			<div class=col-sm-4>
-				<h1>TEST2</h1>
-			</div>
-			<div class=col-sm-4>
-				<h1>TEST3</h1>
-			</div>
-		-->
+
+	    <script>
+	        jssor_slider1_starter('home-slider-wrap2',true,1);
+	    </script>	    
+		    </div>
+		
 		
 
 
 	    
 
-			</div>
+		</div>
 
 
 
@@ -326,8 +513,8 @@
     <nav class="primary clearfix" style="text-decoration: none;">
          <div class="portfolioFilters">
            <a href="#" class="selected" data-filter="*">全部</a>
-           <a class="" href="#" data-filter=".hot">热销产品</a>
            <a class="" href="#" data-filter=".new">最新产品</a>
+           <a class="" href="#" data-filter=".hot">热销产品</a>
            <a class="" href="#" data-filter=".best">推荐产品</a>
    		</div>
        </nav>	
