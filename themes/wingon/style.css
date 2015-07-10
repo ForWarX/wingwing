@@ -80,7 +80,7 @@ body, button, input, select, textarea {
   display: block;
   /* text-decoration: none; */
   color: #ECECEC !important;
-  padding: 19px 22px 20px;
+   padding: 19px 22px 21px 20px;
   font-size: 13px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -98,7 +98,7 @@ body, button, input, select, textarea {
   clear: both;
   display: block;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08);
-  height: 58px;
+  height: 59px;
 }
 .menu-toggle-1 {
   display: none;
@@ -116,7 +116,7 @@ body, button, input, select, textarea {
   position: relative;
   display: block;
   float: left;
-  height: 58px!important;
+  height: 59px!important;
 }
 
 .site-boxed .site-header .main-navigation .site-container {
@@ -1554,10 +1554,28 @@ color:#19C589;margin:0 0 0.6em; font-weight:800;}
          /* ====================
      用户中心
 ==================== */
+
+ .login-form {
+ margin-top: 160px;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+	width:20%;
+	  background-color: rgba(0,0,0, .7);
+  padding: 2%;
+	}
+
+
+
+
+
+
+
+
+
+
     .box_1 .userCenterBox{border:4px solid #f8f8f8; background-color:#fff;}
-    .usBox{border:1px solid #ccc; padding:15px; color:#000 }
+    .usBox{/*border:1px solid #ccc; */padding:15px; color:#000 }
 	
-	.usBox .inputBg{ border:1px solid #ccc; background:none}
+	.usBox .inputBg{ /*border:1px solid #ccc;*/ background:none}
     .usBox_1{background:#fff; text-align:left; width:320px; }
     .logtitle{height:35px; background:url(images/user_tit1.gif) no-repeat 0px 0px;}
 	.logtitle3{height:35px; background:url(images/user_tit3.gif) no-repeat 0px 0px;}

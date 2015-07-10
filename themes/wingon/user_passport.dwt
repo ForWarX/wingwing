@@ -16,55 +16,54 @@
 <body><!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem --><div class="block block1"><!--#登录界面 start-->
 <!-- {if $action eq 'login'} -->
-<div class="usBox clearfix shadow">
-  <div class="usBox_1 f_l" style="margin:2% 0 0 30px;">
-   <div class="logtitle"></div>
+<div class="usBox clearfix" style=" height: 700px;
+  background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
+  background-size: cover;">
+  <div class="login-form" style="">
    <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
         <table width="100%" border="0" align="left" cellpadding="3" cellspacing="5">
+		<tr><td style="vertical-align:top;"><h1 style="margin-top:-5px;"><small style="color:#fff;">{$_LANG.user_login}</small></h1></td></tr>
+		  <tr height="10"><td></td></tr>		
           <tr>
-            <td width="15%" align="right">{$lang.label_username}</td>
-            <td width="85%"><input name="username" type="text" size="25" class="inputBg" value="会员帐号" onfocus="if(value=='会员帐号'){value=''}" onblur="if(value==''){value='会员帐号'}" style="color:#808080"/></td>
-          </tr>
+            <td width="85%">
+			  <div class="input-group input-group">
+			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user" style="rgba(0,0,0, .7)"></i></span>
+			  <input name="username" type="text" class="form-control" placeholder="{$_LANG.member_name}" aria-describedby="sizing-addon2">
+			  </div>
+			</td>
+		  </tr>
+		  <tr height="10"><td></td></tr>
           <tr>
-            <td align="right">{$lang.label_password}</td>
             <td>
-            <input name="password" type="password" size="15"  class="inputBg"/>
+			  <div class="input-group input-group">
+			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-lock" style="rgba(0,0,0, .7)"></i></span>
+			  <input name="password" type="text" class="form-control" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2">
+			  </div>
             </td>
           </tr>
           <!-- 判断是否启用验证码{if $enabled_captcha} -->
           <tr>
-            <td align="right">{$lang.comment_captcha}</td>
-            <td><input type="text" size="8" name="captcha" class="inputBg" />
+            <td><input type="text" size="8" name="captcha" class="inputBg" title="{$lang.comment_captcha}"/>
             <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
           </tr>
           <!--{/if}-->
+		  <tr height="30"><td></td></tr>
           <tr>
-            <td colspan="2"><input type="checkbox" value="1" name="remember" id="remember" /><label for="remember">{$lang.remember}</label></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
             <td align="left">
             <input type="hidden" name="act" value="act_login" />
             <input type="hidden" name="back_act" value="{$back_act}" />
-            <input type="submit" name="submit" value="" class="us_Submit" />
+            <!--<input type="submit" name="submit" value="" class="us_Submit" />-->
+			<button type="button" class="btn btn-primary" style="  width: 100%;">{$_LANG.login}</button>
             </td>
           </tr>
-	  <tr><td></td><td><a href="user.php?act=qpassword_name" class="f3">{$lang.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3">{$lang.get_password_by_mail}</a></td></tr>
-      </table>
+		  		  <tr height="20"><td></td></tr>
+	  <tr><td><a href="user.php?act=qpassword_name" class="f3" style="  color: #EDEDED;">{$lang.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3" style="  color: #EDEDED;">{$lang.get_password_by_mail}</a></td></tr>
+	  <tr height="30"><td></td></tr>  
+	  <tr><td style="text-align:right;"><a href="user.php?act=register" class="label label-warning" style="font-size:1.2em;">{$_LANG.reg_now}</a></td></tr>	  
+	  </table>
     </form>
     <div class="blank"></div>
   </div>
-  <div class="usTxt">
-  <div class="regtitle"></div>
-  <div style="padding-left:50px;">
-    <strong>{$lang.user_reg_info[0]}</strong>  <br />
-    注册之后您可以：<br />
-    1. {$lang.user_reg_info[4]}<br />
-    2. {$lang.user_reg_info[5]}<br />
-    3. {$lang.user_reg_info[7]}  <br />
-    <a href="user.php?act=register"><img src="images/bnt_ur_reg.gif" /></a>
-  </div>
-   </div>
 </div>
 <!--{/if}-->
 <!--#登录界面 end-->
