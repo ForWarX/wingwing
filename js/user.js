@@ -297,10 +297,40 @@ function userLogin(button_name)
     return false;
   }
   else
-  {
-    return true;
+  {	
+	var username = document.getElementById('username_login').value;
+	var password = document.getElementById('password_login').value;
+	if (document.getElementById('captcha_login')){var captcha = document.getElementById('captcha_login').value;}else{var captcha = '';}
+	var act = document.getElementById('act_login').value;
+	var back_act = document.getElementById('back_act_login').value;
+
+	Ajax.call('user.php?act=signin', 'back_act=' + back_act + '&captcha=' + captcha + '&password=' + password + '&username=' + username + '&button_name=' + button_name, logInResponse, 'POST', 'JSON');
+    return false;
   }
 }
+
+
+function logInResponse(response){
+		msg = response.content;
+		button_name = response.button_name;
+		if (response.error != ''){
+		  if(document.all && !document.addEventListener){
+			alert(msg);
+		  }
+		  else{
+			swal({   title: "",   text: msg,   type: "error",   confirmButtonText: button_name, html: false });
+		  }
+		}
+		else {
+		  if(document.all && !document.addEventListener){
+			alert(msg);
+		  }
+		  else{
+			swal({   title: "",   text: msg,   type: "success",   confirmButtonText: button_name, html: true });
+		  }			
+		}
+}
+
 
 function chkstr(str)
 {

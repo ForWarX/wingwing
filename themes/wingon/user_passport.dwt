@@ -28,7 +28,7 @@
             <td width="85%">
 			  <div class="input-group input-group">
 			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user" style="rgba(0,0,0, .7)"></i></span>
-			  <input name="username" type="text" class="form-control" placeholder="{$_LANG.member_name}" aria-describedby="sizing-addon2">
+			  <input name="username" id="username_login" type="text" class="form-control" placeholder="{$_LANG.member_name}" aria-describedby="sizing-addon2">
 			  </div>
 			</td>
 		  </tr>
@@ -37,21 +37,21 @@
             <td>
 			  <div class="input-group input-group">
 			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-lock" style="rgba(0,0,0, .7)"></i></span>
-			  <input name="password" type="password" class="form-control" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2">
+			  <input name="password"  id="password_login" type="password" class="form-control" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2">
 			  </div>
             </td>
           </tr>
           <!-- 判断是否启用验证码{if $enabled_captcha} -->
           <tr>
-            <td><input type="text" size="8" name="captcha" class="inputBg" title="{$lang.comment_captcha}"/>
+            <td><input id="captcha_login" type="text" size="8" name="captcha" class="inputBg" title="{$lang.comment_captcha}"/>
             <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
           </tr>
           <!--{/if}-->
 		  <tr height="30"><td></td></tr>
           <tr>
             <td align="left">
-            <input type="hidden" name="act" value="act_login" />
-            <input type="hidden" name="back_act" value="{$back_act}" />
+            <input  id="act_login" type="hidden" name="act" value="act_login" />
+            <input id="back_act_login" type="hidden" name="back_act" value="{$back_act}" />
             <!--<input type="submit" name="submit" value="" class="us_Submit" />-->
 			<button type="submit" class="btn btn-primary" style="  width: 100%;">{$_LANG.login}</button>
             </td>
