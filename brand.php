@@ -352,4 +352,5 @@ function brand_related_cat($brand)
     return $arr;
 }
 
+
 ?>

@@ -44,6 +44,8 @@ $_LANG['shopping_and_other'] = 'Customers who bought this item also bought.';
 $_LANG['bought_notes'] = 'Bought notes';
 $_LANG['later_bought_amounts'] = 'bought amounts latest';
 $_LANG['bought_time'] = 'bought time';
+$_LANG['cur_price'] = 'Now ';
+$_LANG['ori_price'] = 'Was ';
 $_LANG['turnover'] = 'turnover';
 $_LANG['no_notes'] = 'No one bought this product';
 $_LANG['shop_price'] = 'Shop price:';
@@ -829,4 +831,12 @@ $_LANG['cancel'] = 'Cancel';
 //airticle_home新闻动态页面//
 $_LANG['more'] = 'More';
 $_LANG['view'] = 'View';
+
+//products 页面
+$_LANG['buynow'] = 'Buy Now';
+$_LANG['limittime_left'] = 'Limited groupon！Time remaining: ';
+$_LANG['day'] = ' Day(s) ';
+$_LANG['hour'] = ' Hour(s) ';
+$_LANG['minute'] = ' Min ';
+$_LANG['second'] = ' Sec ';
 ?>

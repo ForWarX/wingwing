@@ -832,4 +832,12 @@ $_LANG['cancel'] = '取消';
 //airticle_home新闻动态页面//
 $_LANG['more'] = '更多';
 $_LANG['view'] = '查看';
+
+//products 页面
+$_LANG['buynow'] = '立即抢购';
+$_LANG['limittime_left'] = '限时团购！剩馀';
+$_LANG['day'] = '天';
+$_LANG['hour'] = '小时';
+$_LANG['minute'] = '分';
+$_LANG['second'] = '秒';
 ?>

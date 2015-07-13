@@ -90,7 +90,7 @@ if ($act == 'cat_rec')
 /* 缓存编号 */
 $cache_id = sprintf('%X', crc32($_SESSION['user_rank'] . '-' . $_CFG['lang']));
 
-if (!$smarty->is_cached('goods.dwt', $cache_id))
+if (!$smarty->is_cached('products.dwt', $cache_id))
 {
     assign_template();
 
@@ -120,7 +120,8 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
     $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
     $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
-	
+	$brand_logo = get_brand_logo_array_paged(get_brand_with_logo(),10);
+	$smarty->assign('brand_logo',      $brand_logo);        // 品牌logo
 	$smarty->assign('playerdb',         get_flash_xml());       // FLASHJS广告
 	
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
@@ -317,11 +318,14 @@ function index_get_group_buy()
     $group_buy_list = array();
     if ($limit > 0)
     {
-        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.goods_name, g.goods_thumb, g.goods_img ' .
+        $sql = 'SELECT gb.act_id AS group_buy_id, gb.goods_id, gb.ext_info, gb.start_time, gb.end_time, g.goods_thumb, g.goods_img, g.shop_price, g.goods_name'.$_SESSION['language'].', gg.img_url ' .
                 'FROM ' . $GLOBALS['ecs']->table('goods_activity') . ' AS gb, ' .
-                    $GLOBALS['ecs']->table('goods') . ' AS g ' .
+                    $GLOBALS['ecs']->table('goods') . ' AS g, ' .
+					$GLOBALS['ecs']->table('goods_gallery') . ' AS gg ' . 
                 "WHERE gb.act_type = '" . GAT_GROUP_BUY . "' " .
                 "AND g.goods_id = gb.goods_id " .
+                "AND gg.goods_id = gb.goods_id " .
+                "AND gg.img_order = 0 " .
                 "AND gb.start_time <= '" . $time . "' " .
                 "AND gb.end_time >= '" . $time . "' " .
                 "AND g.is_delete = 0 " .
@@ -351,9 +355,12 @@ function index_get_group_buy()
             }
             ksort($price_ladder);
             $row['last_price'] = price_format(end($price_ladder));
+			$row['shop_price'] = price_format($row['shop_price']);
+			$row['start_time'] = local_date('Y-m-d H:i:s',$row['start_time']);
+			$row['end_time'] = local_date('Y-m-d H:i:s',$row['end_time']);
             $row['url'] = build_uri('group_buy', array('gbid' => $row['group_buy_id']));
             $row['short_name']   = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
-                                           sub_str($row['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'];
+                                           sub_str($row['goods_name'.$_SESSION['language'].''], $GLOBALS['_CFG']['goods_name_length']) : $row['goods_name'.$_SESSION['language'].''];
             $row['short_style_name']   = add_style($row['short_name'],'');
             $group_buy_list[] = $row;
         }
@@ -456,4 +463,77 @@ function get_category_banner_xml($file_name)
 	
 }
 
+function get_brand_with_logo()
+{
+    $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('brand') . " WHERE brand_logo <> ''";
+	
+     $result = $GLOBALS['db']->getAll($sql);
+	 
+	 foreach($result as $key => $value){
+		 $result[$key]['brand_logo'] =  DATA_DIR . '/brandlogo/' . $value['brand_logo'];
+	 }
+	 
+	 return $result;
+}
+
+function get_brand_logo_array_paged($arry,$perpage,$number_of_one_row=5){
+    
+
+$result = array();
+$result['arry'] = '';
+$result['page'] = '';
+
+$group_array = array();
+$group = 1;
+$count_arry= count($arry);
+
+$page = ceil($count_arry / $perpage);
+$left_number = fmod($count_arry, $perpage);
+if ($left_number != 0){
+    $empty_number = $perpage - $left_number;
+
+    for ($i = $count_arry; $i < ($count_arry + $empty_number); $i++){
+        $arry[$i]['brand_id'] = '';
+        $arry[$i]['brand_name'] = '';
+        $arry[$i]['brand_logo'] = '';
+		$arry[$i]['brand_desc'] = '';
+		$arry[$i]['site_url'] = '';
+		$arry[$i]['sort_order'] = '';
+		$arry[$i]['is_show'] = '';;
+    }
+}
+$count_arry = count($arry);
+for ($i = 0; $i < $count_arry; $i++){
+    $r = fmod($i,$perpage);
+    if ($r == 0 && $i != 0){$group = $group + 1;}
+    $group_arry[$group][] = $arry[$i];
+}
+
+
+/*$temp_top_arry = array();
+$temp_bottom_arry = array();
+$temp_group_arry = array();
+
+foreach ($group_arry as $key => $value){
+    foreach ($value as $index => $item){ 
+        if($index < $number_of_one_row){
+            $temp_top_arry[$key][] = $item;
+        }
+        else{
+            $temp_bottom_arry[$key][] = $item;
+        }
+    }
+    $temp_group_arry[$key]['top'] = $temp_top_arry[$key];
+    $temp_group_arry[$key]['bottom'] = $temp_bottom_arry[$key];
+
+
+
+
+$group_arry = $temp_group_arry;
+}*/
+
+$result['arry'] = $group_arry;
+$result['page'] = $page;
+return $result;
+}
 ?>
