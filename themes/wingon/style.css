@@ -3020,6 +3020,7 @@ color: #c0c0c0;
 .yamm .dropdown-menu {
   left: auto;
   border-radius:0px!important;
+  z-index:6!important;
 }
  
 .yamm .yamm-content {

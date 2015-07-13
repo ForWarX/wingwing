@@ -7,9 +7,15 @@
       <tr>
         <td class="label"><?php echo $this->_var['lang']['cat_name']; ?>:</td>
         <td>
-          <input type='text' name='cat_name' maxlength="20" value='<?php echo htmlspecialchars($this->_var['cat_info']['cat_name']); ?>' size='27' /> <font color="red">*</font>
+          <input type='text' name='cat_name' maxlength="30" value='<?php echo htmlspecialchars($this->_var['cat_info']['cat_name']); ?>' size='27' /> <font color="red">*</font>
         </td>
       </tr>
+	  <tr>
+		  <td class="label"><?php echo $this->_var['lang']['cat_name_en']; ?>:</td>
+		  <td>
+		   <input type='text' name='cat_name_en' maxlength="30" value='<?php echo htmlspecialchars($this->_var['cat_info']['cat_name_en']); ?>' size='27' />
+		  </td>
+	  </tr>
       <tr>
         <td class="label"><?php echo $this->_var['lang']['parent_id']; ?>:</td>
         <td>

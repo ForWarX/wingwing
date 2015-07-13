@@ -2126,7 +2126,7 @@ function get_navigator($ctype = '', $catlist = array())
     while ($row = $GLOBALS['db']->fetchRow($res))
     {
         $navlist[$row['type']][] = array(
-            'name'      =>  $row['name'],
+            'name'      =>  $row['name'.$_SESSION['language'].''],
             'opennew'   =>  $row['opennew'],
             'url'       =>  $row['url'],
             'ctype'     =>  $row['ctype'],

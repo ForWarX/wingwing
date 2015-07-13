@@ -53,7 +53,7 @@ function get_categories_tree($cat_id = 0)
     if ($GLOBALS['db']->getOne($sql) || $parent_id == 0)
     {
         /* 获取当前分类及其子分类 */
-        $sql = 'SELECT cat_id,cat_name ,parent_id,is_show, icon ' .
+        $sql = 'SELECT cat_id,cat_name'.$_SESSION['language'].' ,parent_id,is_show, icon ' .
                 'FROM ' . $GLOBALS['ecs']->table('category') .
                 "WHERE parent_id = '$parent_id' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC";
 
@@ -64,7 +64,7 @@ function get_categories_tree($cat_id = 0)
             if ($row['is_show'])
             {
                 $cat_arr[$row['cat_id']]['id']   = $row['cat_id'];
-                $cat_arr[$row['cat_id']]['name'] = $row['cat_name'];
+                $cat_arr[$row['cat_id']]['name'] = $row['cat_name'.$_SESSION['language'].''];
                 $cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $row['cat_id']), $row['cat_name']);
                 $cat_arr[$row['cat_id']]['icon'] = $row['icon'];
 
@@ -87,7 +87,7 @@ function get_child_tree($tree_id = 0)
     $sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('category') . " WHERE parent_id = '$tree_id' AND is_show = 1 ";
     if ($GLOBALS['db']->getOne($sql) || $tree_id == 0)
     {
-        $child_sql = 'SELECT cat_id, cat_name, parent_id, is_show ' .
+        $child_sql = 'SELECT cat_id, cat_name'.$_SESSION['language'].', parent_id, is_show ' .
                 'FROM ' . $GLOBALS['ecs']->table('category') .
                 "WHERE parent_id = '$tree_id' AND is_show = 1 ORDER BY sort_order ASC, cat_id ASC";
         $res = $GLOBALS['db']->getAll($child_sql);
@@ -96,7 +96,7 @@ function get_child_tree($tree_id = 0)
             if ($row['is_show'])
 
                $three_arr[$row['cat_id']]['id']   = $row['cat_id'];
-               $three_arr[$row['cat_id']]['name'] = $row['cat_name'];
+               $three_arr[$row['cat_id']]['name'] = $row['cat_name'.$_SESSION['language'].''];
                $three_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $row['cat_id']), $row['cat_name']);
 
                if (isset($row['cat_id']) != NULL)
