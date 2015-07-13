@@ -2124,7 +2124,7 @@ function get_navigator($ctype = '', $catlist = array())
         'bottom' => array()
     );
     while ($row = $GLOBALS['db']->fetchRow($res))
-    {
+    {	
         $navlist[$row['type']][] = array(
             'name'      =>  $row['name'.$_SESSION['language'].''],
             'opennew'   =>  $row['opennew'],
@@ -2266,5 +2266,7 @@ function comment_full_hash($comments){
 		return $comments;
 		
 }
+
+
 
 ?>

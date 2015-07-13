@@ -269,7 +269,7 @@ function addBooking()
 /* *
  * 会员登录
  */
-function userLogin()
+function userLogin(button_name)
 {
   var frm      = document.forms['formLogin'];
   var username = frm.elements['username'].value;
@@ -287,8 +287,13 @@ function userLogin()
   }
 
   if (msg.length > 0)
-  {
-    alert(msg);
+  {	
+	  if(document.all && !document.addEventListener){
+		alert(msg);
+	  }
+	  else{
+		swal({   title: "",   text: msg,   type: "error",   confirmButtonText: button_name, html: false });
+	  }
     return false;
   }
   else

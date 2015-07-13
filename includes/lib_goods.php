@@ -62,11 +62,19 @@ function get_categories_tree($cat_id = 0)
         foreach ($res AS $row)
         {
             if ($row['is_show'])
-            {
+            {	
+				$cat_img = '';
+				$img = get_banner_xml('/banner/home_page_banner/'.$row['cat_id'].'/home_page_banner_'.$row['cat_id'].'.xml');
+				
+				foreach ($img as $key => $value){
+					if ($value['order'] == 0){$cat_img = $value['src'];}
+				}
+				
                 $cat_arr[$row['cat_id']]['id']   = $row['cat_id'];
                 $cat_arr[$row['cat_id']]['name'] = $row['cat_name'.$_SESSION['language'].''];
                 $cat_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $row['cat_id']), $row['cat_name']);
                 $cat_arr[$row['cat_id']]['icon'] = $row['icon'];
+                $cat_arr[$row['cat_id']]['src']  = $cat_img;
 
                 if (isset($row['cat_id']) != NULL)
                 {
@@ -74,7 +82,7 @@ function get_categories_tree($cat_id = 0)
                 }
             }
         }
-    }
+    }showr($cat_arr);
     if(isset($cat_arr))
     {
         return $cat_arr;
@@ -94,10 +102,18 @@ function get_child_tree($tree_id = 0)
         foreach ($res AS $row)
         {
             if ($row['is_show'])
-
+				
+				$cat_img = '';
+				$img = get_banner_xml('/banner/home_page_banner/'.$row['cat_id'].'/home_page_banner_'.$row['cat_id'].'.xml');
+				
+				foreach ($img as $key => $value){
+					if ($value['order'] == 0){$cat_img = $value['src'];}
+				}
+				
                $three_arr[$row['cat_id']]['id']   = $row['cat_id'];
                $three_arr[$row['cat_id']]['name'] = $row['cat_name'.$_SESSION['language'].''];
                $three_arr[$row['cat_id']]['url']  = build_uri('category', array('cid' => $row['cat_id']), $row['cat_name']);
+			   $three_arr[$row['cat_id']]['src']  = $cat_img;
 
                if (isset($row['cat_id']) != NULL)
                    {
@@ -1686,5 +1702,27 @@ function ec_buysum($goods_id)
        return $GLOBALS['db']->getOne($sql);
     }
     
+}
+
+function get_banner_xml($file_name)
+{
+    $flashdb = array();
+    if (file_exists(ROOT_PATH . DATA_DIR . $file_name))
+    {
+        // 兼容v2.7.0及以前版本
+    if (!preg_match_all('/desc="([^"]*)"\ssrc="([^"]+)"\surl="([^"]*)"\sorder="([^"]*)"\sposition="([^"]*)"\sid="([^"]*)"\sshow="([^"]*)"/', file_get_contents(ROOT_PATH . DATA_DIR . $file_name), $t, PREG_SET_ORDER))
+        {
+            preg_match_all('/desc="([^"]*)"\ssrc="([^"]+)"\surl="([^"]*)"\sorder="([^"]*)"\sposition="([^"]*)"\sid="([^"]*)"\sshow="([^"]*)"/', file_get_contents(ROOT_PATH . DATA_DIR . $file_name), $t, PREG_SET_ORDER);
+        }
+        if (!empty($t))
+        {
+            foreach ($t as $key => $val)
+            {
+                $flashdb[$val[6]] = array('desc'=>$val[1],'src'=>$val[2],'url'=>$val[3],'order'=>$val[4],'position'=>$val[5],'id'=>$val[6],'show'=>$val[7]);
+            }
+        }
+    }
+    return $flashdb;
+	
 }
 ?>

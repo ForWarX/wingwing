@@ -20,7 +20,7 @@
   background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
   background-size: cover;">
   <div class="login-form" style="">
-   <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+   <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin('{$_LANG.ok}')">
         <table width="100%" border="0" align="left" cellpadding="3" cellspacing="5">
 		<tr><td style="vertical-align:top;"><h1 style="margin-top:-5px;"><small style="color:#fff;">{$_LANG.user_login}</small></h1></td></tr>
 		  <tr height="10"><td></td></tr>		
@@ -37,7 +37,7 @@
             <td>
 			  <div class="input-group input-group">
 			  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-lock" style="rgba(0,0,0, .7)"></i></span>
-			  <input name="password" type="text" class="form-control" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2">
+			  <input name="password" type="password" class="form-control" placeholder="{$_LANG.password}" aria-describedby="sizing-addon2">
 			  </div>
             </td>
           </tr>
@@ -53,7 +53,7 @@
             <input type="hidden" name="act" value="act_login" />
             <input type="hidden" name="back_act" value="{$back_act}" />
             <!--<input type="submit" name="submit" value="" class="us_Submit" />-->
-			<button type="button" class="btn btn-primary" style="  width: 100%;">{$_LANG.login}</button>
+			<button type="submit" class="btn btn-primary" style="  width: 100%;">{$_LANG.login}</button>
             </td>
           </tr>
 		  		  <tr height="20"><td></td></tr>
