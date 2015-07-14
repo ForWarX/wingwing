@@ -19,9 +19,9 @@
 										<!--{foreach from=$cat.cat_id item=subcat}-->
                     <div class="col-sm-2" style="display: inline-block; width:200px \9;">
 					{if $subcat.src neq ''}
-                      <div class="thumbnail"><img alt="260x130" src="{$subcat.src}">
+                      <div class="thumbnail"><img alt="260x130" style="height:130px!important;width:260px!important;" src="{$subcat.src}">
 					{else}
-                      <div class="thumbnail"><img alt="260x130" src="images/260.jpg">
+                      <div class="thumbnail"><img alt="260x130" style="height:130px!important;width:260px!important;" src="images/260.jpg">
 					{/if} 
                         <div class="caption">
                           <p style="text-align:center; font-size:auto;">
