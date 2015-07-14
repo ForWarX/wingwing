@@ -623,6 +623,7 @@ position:relative;
 	width:80px; top:19px; right: 0;  border: #CCC solid 1px; background-color: #FFFFFF;border-radius: 2px;
 	z-index:11;
 -moz-border-radius: 2px;-webkit-border-radius: 2px; 
+text-align:left;
 }
 
 .wrapper_ul > li{display:inline;  position: relative;}
