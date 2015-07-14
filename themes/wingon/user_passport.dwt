@@ -271,8 +271,10 @@
 
 <!--*通过问题找回密码的确认找回账号界面 -->
     <!--{if $action eq 'qpassword_name'} -->
-<div class="usBox">
-  <div class="usBox_2 clearfix">
+<div class="usBox"  style=" height: 900px;
+  background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
+  background-size: cover;">
+  <div class="login-form clearfix">
     <form action="user.php" method="post">
         <br />
         <table width="70%" border="0" align="center">

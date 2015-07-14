@@ -320,7 +320,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 			}
 		}
 		
-		
+		$group_buy = goods_group_buy_info($goods_id);
 	
 
 		
@@ -342,6 +342,9 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('ready_comment',      $ready_comment);                       // 从用户中心过来评论
         $smarty->assign('ready_comment_id',   $ready_comment_id);                       // 从用户中心过来追加评论
 		$smarty->assign('all-categories',       get_categories_tree()); // 分类树
+		
+		$smarty->assign('group_buy', $group_buy);
+		showr($group_buy);
 
         //获取tag
         $tag_array = get_tags($goods_id);
@@ -354,6 +357,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         assign_dynamic('goods');
         $volume_price_list = get_volume_price_list($goods['goods_id'], '1');
         $smarty->assign('volume_price_list',$volume_price_list);    // 商品优惠价格区间
+		//showr($volume_price_list);
     }
 }
 
@@ -777,6 +781,93 @@ function get_goods_use($goods_id)
      $goods_use = $GLOBALS['db']->getAll($sql);
 	 if (count($goods_use) < 1){return array();}
      return $goods_use;
+}
+
+/**
+ * 取得团购活动信息
+ * @param   int     $group_buy_id   团购活动id
+ * @param   int     $current_num    本次购买数量（计算当前价时要加上的数量）
+ * @return  array
+ *                  status          状态：
+ */
+function goods_group_buy_info($goods_id, $current_num = 0)
+{
+    /* 取得团购活动信息 */
+    $group_buy_id = intval($group_buy_id);
+    $sql = "SELECT *, act_id AS group_buy_id, act_desc AS group_buy_desc, start_time AS start_date, end_time AS end_date " .
+            "FROM " . $GLOBALS['ecs']->table('goods_activity') .
+            "WHERE goods_id = '$goods_id' " .
+            "AND act_type = '" . GAT_GROUP_BUY . "'";
+    $group_buy = $GLOBALS['db']->getRow($sql);
+
+    /* 如果为空，返回空数组 */
+    if (empty($group_buy))
+    {
+        return array();
+    }
+
+    $ext_info = unserialize($group_buy['ext_info']);
+    $group_buy = array_merge($group_buy, $ext_info);
+
+    /* 格式化时间 */
+    $group_buy['formated_start_date'] = local_date('Y-m-d H:i', $group_buy['start_time']);
+    $group_buy['formated_end_date'] = local_date('Y-m-d H:i', $group_buy['end_time']);
+
+    /* 格式化保证金 */
+    $group_buy['formated_deposit'] = price_format($group_buy['deposit'], false);
+
+    /* 处理价格阶梯 */
+    $price_ladder = $group_buy['price_ladder'];
+    if (!is_array($price_ladder) || empty($price_ladder))
+    {
+        $price_ladder = array(array('amount' => 0, 'price' => 0));
+    }
+    else
+    {
+        foreach ($price_ladder as $key => $amount_price)
+        {
+            $price_ladder[$key]['formated_price'] = price_format($amount_price['price'], false);
+        }
+    }
+    $group_buy['price_ladder'] = $price_ladder;
+
+    /* 统计信息 */
+    $stat = group_buy_stat($group_buy_id, $group_buy['deposit']);
+    $group_buy = array_merge($group_buy, $stat);
+
+    /* 计算当前价 */
+    $cur_price  = $price_ladder[0]['price']; // 初始化
+    $cur_amount = $stat['valid_goods'] + $current_num; // 当前数量
+    foreach ($price_ladder as $amount_price)
+    {
+        if ($cur_amount >= $amount_price['amount'])
+        {
+            $cur_price = $amount_price['price'];
+        }
+        else
+        {
+            break;
+        }
+    }
+    $group_buy['cur_price'] = $cur_price;
+    $group_buy['formated_cur_price'] = price_format($cur_price, false);
+
+    /* 最终价 */
+    $group_buy['trans_price'] = $group_buy['cur_price'];
+    $group_buy['formated_trans_price'] = $group_buy['formated_cur_price'];
+    $group_buy['trans_amount'] = $group_buy['valid_goods'];
+
+    /* 状态 */
+    $group_buy['status'] = group_buy_status($group_buy);
+    if (isset($GLOBALS['_LANG']['gbs'][$group_buy['status']]))
+    {
+        $group_buy['status_desc'] = $GLOBALS['_LANG']['gbs'][$group_buy['status']];
+    }
+
+    $group_buy['start_time'] = $group_buy['formated_start_date'];
+    $group_buy['end_time'] = $group_buy['formated_end_date'];
+
+    return $group_buy;
 }
 
 ?>

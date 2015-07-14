@@ -26,149 +26,10 @@ function $id(element) {
 </style>
 </head>
 <body><!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<link href="library/themes/americo/style2.css" type="text/css" rel="stylesheet">
-<script type="text/javascript">
-var process_request = "{$lang.process_request}";
-</script>
 
+<!-- #EndLibraryItem -->{insert_scripts files='jquery.countdown.min.js'}
 
-<div class="header">
-<div class="topNav ">
-<div id="topNavContent" align="center">
-	<span class="f_l"><i class="icomoon-phone-4"></i> 客服热线：<span style="font-weight:bold;"><!-- 客服电话{if $service_phone} -->
-{$service_phone} <!-- 结束客服电话{/if} --></span> | <a href="library/wholesale.php"><i class="icomoon-stack-plus"></i> B2B专区</a> | <a href="library/topic.php?topic_id=6"><i class="icomoon-paper-plane"></i> 体验馆</a></span>
-			<div class="cart" id="ECS_CARTINFO">
-			{insert name='cart_info'}
-            </div>
-            
-		   <div class="f_r log">
- <i class="icomoon-tag-8"></i><a href="library/user.php?act=order_list">我的订单</a>
- </div>
-           <div class="f_r" style=" margin-top:0;_margin-top:7px;">
-              {insert_scripts files='utils.js'}
-               <font id="ECS_MEMBERZONE">{* PBCC 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </font>
-                  <!--{if $navigator_list.top}-->
-                  <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->  
-                  <a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a>
-                  <!-- {/foreach} --> <!-- {/if} -->
-          </div>
-          </div>
-                   </div>
-<div class="block" style=" position:relative; z-index:9999;">
-
-<div style="height: 80px;padding: 15px 10px;">
-<div style="position:absolute;"><a href="library/index.php"><img src="images/logo-final.png"></a></div>
-
-<div id="search"  style="position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0;">
-   
-  <form id="searchForm" name="searchForm" method="get" action="library/search.php" onSubmit="return checkSearchForm()"  >
-   <input name="keywords" type="text" id="keyword" placeholder="搜索  商品" class="B_input"/>
-   <input type="hidden" id="sc_ds" value="1" name="sc_ds">
-   <input type="hidden" id="category" value="0" name="category">
-   <input type="hidden" id="brand" value="0" name="brand">
-   <input id="min_price" type="hidden" value="0" name="min_price">
-   <input id="max_price" type="hidden" value="0" name="max_price">
-   <input type="hidden" id="outstock" value="0" name="outstock">
-   <input type="hidden" value="form" name="action">
-   <button type="submit" id="searchSubmit"><i class="icomoon-search-3"></i></button>
-   <div class="hot-search">
-   	<ul>
-        {if $searchkeywords}
-           {foreach from=$searchkeywords item=val}
-           	<li><a href="search.php?keywords={$val|escape:url}">{$val}</a></li>
-           {/foreach}
-       {/if}
-     </ul>
-    </div>
-    
-  
-   </form>
-   
-</div>
-<div class="giftCard"><img src="library/images/giftcard.gif"/></div>
-</div> 
- 
- </div> 
-<div class="g-menu">
-    <!--<div class="all-catalog" >
-      <a href="catalog.php" class="all-btn">所有商品分类<i class="arrow"></i></a>        
-    <div class="IndexAreaL">
-    {include file="/library/new_cat.lbi"} 
-  </div>
-    </div>-->
-	
-    <ul>
-      <li class="index-icon"> <a href="index.php" ><i class="icomoon-home-2"></i> 首页</a></li>
-        <!-- {foreach name=no from=$navigator_list.middle item=nav } -->
-      <li class="nav-sec"><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}    >{$nav.name}&nbsp;&nbsp;&nbsp;<!-- {if $nav.name eq '促销活动' || $nav.name eq '特别专区' || $nav.name eq '会员中心'}--><i class="icomoon-arrow-down-15"></i><!--{/if}--></a>
-      
-      <div class="dropdown">
-		<ul class="primary">
-        	<!-- {if $nav.name eq '促销活动'}-->
-			<li><i class="icomoon-arrow-right-17 navico"></i><a href="library/flyers/20141018" target="_blank">本周特价</a></li>
-			<li><i class="icomoon-arrow-right-17 navico"></i><a href="#">优惠券</a></li>
-            <!--{/if}-->
-            <!-- {if $nav.name eq '会员中心'}-->
-            <li><i class="icomoon-arrow-right-17 navico"></i><a href="#">“给福卡”绑定</a></li>
-			<li><i class="icomoon-arrow-right-17 navico"></i><a href="#">兑换中心</a></li>
-            <!--{/if}-->
-            <!-- {if $nav.name eq '特别专区'}-->
-            <li><i class="icomoon-arrow-right-17 navico"></i><a href="#">跨境购</a></li>
-			<li><i class="icomoon-arrow-right-17 navico"></i><a href="#">越洋购</a></li>
-            <li><i class="icomoon-arrow-right-17 navico"></i><a href="#">中国购</a></li>
-            <!--{/if}-->
-		</ul>
-	</div>
-     </li>
-<!-- {/foreach} -->
-
-
-</ul>
-<script language="javascript">
-	/*var obj11 = document.getElementsByClassName("g-menu")[0];
-	var srch = document.getElementById("search-form");
-	var top11 = getTop(obj11);
-	
-	var isIE6 = /msie 6/i.test(navigator.userAgent);
-window.onscroll = function(){
-var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-if (bodyScrollTop > top11){
-	
-
-obj11.style.position = (isIE6) ? "absolute" : "fixed";
-obj11.style.top = (isIE6) ? (bodyScrollTop) + "px" : "0px";
-	obj11.style.background = "none repeat scroll 0 0 rgba(249, 106, 100, 0.8)";
-	srch.style.visibility = "visible";
-	srch.style.opacity = "1";
-	} else {
-obj11.style.position = "inherit";
-obj11.style.top = "155px";
-obj11.style.zIndex = "9999";
-srch.style.visibility = "hidden";
-obj11.style.background = "none repeat scroll 0 0 rgba(249, 106, 100, 1)";
-}
-}
-function getTop(e){
-var offset = e.offsetTop;
-if(e.offsetParent != null) offset += getTop(e.offsetParent);
-return offset;
-} */
-$(document).ready(function(){
-	$(".nav-sec").hover(
-		function(){
-  		$(".dropdown",this).css('left','0px');
-		$(this).addClass('selected');
- 		}, 
-		function(){
-		$(".dropdown",this).css('left','-9999px');
-		$(this).removeClass('selected');
-		}
-	);
-	});
-</script>
-</div>
-</div>
-<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/cart_notice.lbi" --><div id="shopbox" class="shopbox">
+	<!-- #BeginLibraryItem "/library/cart_notice.lbi" --><div id="shopbox" class="shopbox">
     <div class="shopboxcon">
         <div id="shoploading" style="display: block;"><img alt="loading" src="images/loading.gif"></div>
         <div>
@@ -254,6 +115,36 @@ $(document).ready(function(){
                     </dd>
                 </dl>
                 <!--{/if}-->
+				<!--{if $volume_price_list|@count gt 0}}-->
+				
+                <dl class="pt10"><dt>价格阶梯</dt>
+			  		<div id="getting-started"></div>
+			  		 <script type="text/javascript">
+			  		var temp = "{$group_buy.formated_end_date}";
+			  		temp = temp.replace(/-/g, "/");
+			  		   $("#getting-started").countdown(temp, function(event) {
+			  		     $(this).text(
+			  		       event.strftime('%-D天%H小时%M分%S秒')
+			  		     );
+			  		   }); 
+
+			  		</script>
+					<dd class="f7">
+						<table style="width: 100%; text-align: center;">
+							<tr>
+								<th style="text-align: center;">数量</th>
+								<th style="text-align: center;">优惠价格</th>
+							</tr>
+							<!--{foreach from=$volume_price_list item=val}-->
+							<tr>
+								<td>{$val.number|escape:html}</td>
+								<td>{$val.format_price|escape:html}</td>
+							</tr>
+							<!--{/foreach}-->
+						</table>
+					</dd>
+                </dl>
+				<!--{/if}-->
             </div>
             <!--<div class="f_l pt20" style="width:30%;"><ul><li><p>P币</p></li><li><span class="pcoin f_l">500</span><span class="coin_logo f_l"></span></li><li><span class="mypcoin f_l">我的P币</span></li></ul></div>-->
             <div class="limited"></div>
@@ -632,12 +523,14 @@ $('#star').raty({score:3});
 $(".arrow-up").parent("span").click(function(){
 		var value = parseInt($(".input_quantity").val());
 		$(".input_quantity").val(value+1);
+		changePrice();
 	});
 $(".arrow-down").parent("span").click(function(){
 		var value = parseInt($(".input_quantity").val());
 		if (value > 1){
 			$(".input_quantity").val(value-1);
 		}
+		changePrice();
 	});
 	
 $(".mypcoin").hover(function(){
