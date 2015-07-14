@@ -158,12 +158,12 @@ $(document).ready(function(){
 				
 
 						  <ul class="my_account_ul" id="my_account_ul"> 
-							 <li><a href="user.php?act=order_list">我的订单</a></li>
-							 <li><a href="user.php?act=collection_list">我的收藏</a></li>
-							 <li><a href="user.php?act=profile">用户信息</a></li>
-							 <li><a href="user.php?act=address_list">收货地址</a></li>
+							 <li><a href="user.php?act=order_list">{$_LANG.my_order_list}</a></li>
+							 <li><a href="user.php?act=collection_list">{$_LANG.my_wish_list}</a></li>
+							 <li><a href="user.php?act=profile">{$_LANG.my_profile}</a></li>
+							 <li><a href="user.php?act=address_list">{$_LANG.my_address}</a></li>
 							 <!-- {if $cfg.use_integral} 购买此商品可使用P币-->
-							 <li><a href="user.php?act=pcoin_deposit"><img src="../images/pcoin.gif" width="12px">币充值</a></li>
+							 <!--<li><a href="user.php?act=pcoin_deposit"><img src="../images/pcoin.gif" width="12px">币充值</a></li>-->
 							 <!-- {/if} -->    
 						 </ul>    
 				</li>

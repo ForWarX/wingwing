@@ -389,6 +389,7 @@ elseif ($action == 'signin')
 
     $username = !empty($_POST['username']) ? json_str_iconv(trim($_POST['username'])) : '';
     $password = !empty($_POST['password']) ? trim($_POST['password']) : '';
+    $back_act = !empty($_POST['back_act']) ? trim($_POST['back_act']) : '';
     $captcha = !empty($_POST['captcha']) ? json_str_iconv(trim($_POST['captcha'])) : '';
 	$button_name = $_POST['button_name'];
     $result   = array('error' => 0, 'content' => '', 'button_name' => $button_name);
@@ -424,7 +425,8 @@ elseif ($action == 'signin')
         $smarty->assign('user_info', get_user_info());
         $ucdata = empty($user->ucdata)? "" : $user->ucdata;
         $result['ucdata'] = $ucdata;
-        $result['content'] = $smarty->fetch('library/member_info.lbi');
+        $result['back_act'] = $back_act;
+        //$result['content'] = $smarty->fetch('library/member_info.lbi');
     }
     else
     {
@@ -437,6 +439,31 @@ elseif ($action == 'signin')
         $result['error']   = 1;
         $result['content'] = $_LANG['login_failure'];
     }
+    die($json->encode($result));
+}
+
+/* 处理 ajax 的登出请求 */
+elseif ($action == 'signout')
+{
+    include_once('includes/cls_json.php');
+    $json = new JSON;
+	
+	if ((!isset($back_act)|| empty($back_act)) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
+    {
+        $back_act = strpos($GLOBALS['_SERVER']['HTTP_REFERER'], 'user.php') ? './index.php' : $GLOBALS['_SERVER']['HTTP_REFERER'];
+    }
+
+    $username = !empty($_POST['username']) ? json_str_iconv(trim($_POST['username'])) : '';
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : '';
+    $back_act = !empty($_POST['back_act']) ? trim($_POST['back_act']) : '';
+    //$captcha = !empty($_POST['captcha']) ? json_str_iconv(trim($_POST['captcha'])) : '';
+	$button_name = $_POST['button_name'];
+    $result   = array('error' => 0, 'content' => '', 'button_name' => $button_name);
+
+	$user->logout();
+ 
+    $result['back_act'] = $back_act;
+ 
     die($json->encode($result));
 }
 

@@ -790,7 +790,14 @@ $_LANG['goods_use_h3'] = '特色吃法';
 $_LANG['dear'] = '亲爱的';
 $_LANG['login'] = '请登录';
 $_LANG['signup'] = '免费注册';
-$_LANG['welcomto'] = '欢迎来到永安';
+$_LANG['welcomto'] = '欢迎来到新永安';
+
+$_LANG['my_order_list'] = '我的订单';
+$_LANG['my_wish_list'] = '我的收藏';
+$_LANG['my_profile'] = '用户信息';
+$_LANG['my_address'] = '收货地址';
+
+
 
 
 /// index.dwt ///

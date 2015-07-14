@@ -322,12 +322,7 @@ function logInResponse(response){
 		  }
 		}
 		else {
-		  if(document.all && !document.addEventListener){
-			alert(msg);
-		  }
-		  else{
-			swal({   title: "",   text: msg,   type: "success",   confirmButtonText: button_name, html: true });
-		  }			
+		 window.location.href = response.back_act;
 		}
 }
 
