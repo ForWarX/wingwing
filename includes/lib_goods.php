@@ -82,7 +82,7 @@ function get_categories_tree($cat_id = 0)
                 }
             }
         }
-    }showr($cat_arr);
+    }//showr($cat_arr);
     if(isset($cat_arr))
     {
         return $cat_arr;
