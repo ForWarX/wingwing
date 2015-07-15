@@ -239,8 +239,10 @@
       var {$key} = "{$item}";
     {/foreach}
     </script>
-<div class="usBox">
-  <div class="usBox_2 clearfix">
+<div class="usBox"  style=" height: 900px;
+  background: url('themes/wingon/images/Sharon_&_Nikki_McCutcheon.jpg') 50% 50%;
+  background-size: cover;">
+  <div class="login-form clearfix">
     <form action="user.php" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
         <br />
         <table width="70%" border="0" align="center">
@@ -277,20 +279,28 @@
   <div class="login-form clearfix">
     <form action="user.php" method="post">
         <br />
-        <table width="70%" border="0" align="center">
+        <table width="100%" border="0" align="center">
           <tr>
-            <td colspan="2" align="center"><strong>{$lang.get_question_username}</strong></td>
+			  <td>
+				  <small style="font-size:1.1em;color:#fff;">{$lang.get_question_username}</small>
+			  </td>
           </tr>
           <tr>
-            <td width="29%" align="right">{$lang.username}</td>
-            <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
+			  <td style="width:100%;">
+				  <div class="input-group input-group">
+				  <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user" style="rgba(0,0,0, .7)"></i></span>
+				  <input name="user_name" type="text" class="form-control" placeholder="{$_LANG.member_name}" aria-describedby="sizing-addon2" required>
+				  </div>
+			  </td>
           </tr>
           <tr>
-            <td></td>
-            <td><input type="hidden" name="act" value="get_passwd_question" />
-              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
-              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
-	    </td>
+            <td>
+			  <input type="hidden" name="act" value="get_passwd_question" />
+              <!--<input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />-->
+			  <button type="Submit" name="Submit" class="btn btn-default">{$lang.submit}</button>
+			  <button type="Submit" name="button" class="btn btn-default" onclick="history.back()">{$lang.back_page_up}</button>
+              <!--<input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />-->
+			</td>
           </tr>
         </table>
         <br />
